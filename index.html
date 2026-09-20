@@ -21,7 +21,6 @@
             padding: 0;
         }
 
-        /* Arquitectura de diseño directo al viewport (Igual a index01) */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #000000;
@@ -37,7 +36,6 @@
             filter: blur(12px);
         }
 
-        /* Imagen de fondo independiente */
         .bg-image {
             position: fixed;
             top: 0;
@@ -56,7 +54,6 @@
             opacity: 1;
         }
 
-        /* Capa de desvanecimiento inicial en blanco */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -74,7 +71,6 @@
             opacity: 0;
         }
 
-        /* Header Superior Izquierda */
         .top-header {
             position: absolute;
             top: 2.5rem;
@@ -85,7 +81,7 @@
         .top-header a {
             color: #ffffff;
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 1.5vw, 1rem); /* Texto fluido */
             font-weight: 700;
             text-decoration: none;
             letter-spacing: -0.01em;
@@ -98,7 +94,6 @@
             text-decoration: underline;
         }
 
-        /* Header Superior Derecha */
         .top-header-right {
             position: absolute;
             top: 2rem;
@@ -111,7 +106,7 @@
         .top-header-right a {
             color: #ffffff;
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.2vw, 0.9rem); /* Texto fluido */
             font-weight: 700;
             text-decoration: none;
             opacity: 0;
@@ -131,14 +126,13 @@
             color: #ffffff;
         }
 
-        /* Título Principal ¿QUÉ ES..? (Con sombreado posterior blanco agregado) */
         .page-title {
             position: absolute;
             top: 08vh;
             left: 51%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 5rem;
+            font-size: clamp(2rem, 5vw, 5rem); /* Texto fluido */
             font-weight: 700;
             letter-spacing: 0.3em;
             text-transform: uppercase;
@@ -149,16 +143,18 @@
             z-index: 10;
         }
 
-        /* Subtítulo QUIMERA */
         .quimera-word-container {
             position: absolute;
             top: 55vh;
             left: 50%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 10vw, 6rem); /* Texto fluido */
             font-weight: 700;
             letter-spacing: 0.25em;
+            line-height: 1.1;
+            -webkit-text-stroke: 1.5px #000000;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             cursor: default;
             opacity: 0;
             transition: opacity 0.8s ease;
@@ -176,13 +172,12 @@
             transition: color 0.4s ease;
         }
 
-        /* Subtítulo de texto */
         .subtitle-text {
             position: absolute;
             top: calc(55vh + 5.0rem + 0.5rem);
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem); /* Texto fluido */
             line-height: 1.5;
             max-width: 900px;
             width: 90%;
@@ -192,7 +187,6 @@
             z-index: 10;
         }
 
-        /* Recuadro de instrucciones interactivo */
         .exploration-box {
             position: absolute;
             top: 92.5vh;
@@ -204,7 +198,7 @@
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Texto fluido */
             color: #cbd5e1;
             opacity: 0;
             transition: opacity 0.8s ease;
@@ -222,7 +216,6 @@
             margin-bottom: 0.2rem;
         }
 
-        /* Footer integrado de forma absoluta al fondo del viewport */
         footer {
             position: absolute;
             bottom: 0;
@@ -234,7 +227,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             color: #ffffff;
-            font-size: 0.85rem;
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem); /* Texto fluido */
             opacity: 0;
             transition: opacity 500ms ease;
             z-index: 100;
@@ -308,16 +301,9 @@
                 white-space: normal !important;
             }
 
-            .page-title {
-                font-size: 1.8rem !important;
-            }
-
-            .quimera-word-container {
-                font-size: 2.5rem !important;
-            }
+            /* Tamaños fijos retirados de aquí ya que clamp() los maneja */
 
             .subtitle-text {
-                font-size: 1rem !important;
                 padding: 0 1rem;
             }
 
@@ -388,7 +374,7 @@
 
         .modal-box h2 {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem); /* Texto fluido */
             color: #c88b32;
             margin-bottom: 1rem;
             padding-bottom: 0.4rem;
@@ -397,7 +383,7 @@
         }
 
         .modal-box p, .modal-box li {
-            font-size: 1.02rem;
+            font-size: clamp(0.9rem, 2vw, 1.02rem); /* Texto fluido */
             color: #f1f5f9;
             margin-bottom: 1rem;
             line-height: 1.6;
@@ -414,7 +400,7 @@
             padding: 1rem;
             border-radius: 4px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Texto fluido */
             text-align: center;
             margin: 1rem 0;
             color: #5eead4;
@@ -610,7 +596,7 @@
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
                     { type: 'p', text: "Quimera no pretende ser una estructura estática. Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve." },
-                    { type: 'p', text: "Lo que permanece es su orientación: comprender antes de intervenir; fundamentar antes de afirmar; integrar antes de fragmentar; y evaluar para poder mejorar." },
+                    { type: 'p', text: "Lo que permanece es su orientación: comprender antes de intervenir; fundamentar antes de afirmar; integration antes de fragmentar; y evaluar para poder mejorar." },
                     { type: 'p', text: "Quimera existe para convertir preguntas en conocimiento, conocimiento en capacidad y capacidad en práctica responsable." }
                 ]
             }
