@@ -132,12 +132,15 @@
             left: 51%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2rem, 5vw, 5rem); /* Elástico por defecto para otras pantallas */
+            font-size: clamp(2.5rem, 10vw, 6rem); /* Elástico para otras pantallas */
             font-weight: 700;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: #e5ab4b;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.85), 0 0 25px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.8);
+            color: #e2a547; /* Tono cobre dorado */
+            display: inline-block;
+            line-height: 1.1;
+            -webkit-text-stroke: 1.5px #ffffff; /* Contorno blanco */
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); /* Sombra unificada */
             white-space: nowrap;
             opacity: 0;
             z-index: 10;
@@ -247,7 +250,7 @@
         @media (min-width: 1400px) and (max-width: 1920px) and (max-height: 1080px) {
             .page-title {
                 top: 08vh;
-                font-size: 5rem; /* Tamaño fijo para pantallas 16:9 */
+                font-size: 5rem; /* Mantiene su tamaño estático original para 16:9 */
             }
             .quimera-word-container {
                 top: 55vh;
