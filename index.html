@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quimera &bull; Ecosistema Científico, Académico y Profesional</title>
+    <title>¿QUE ES..? QUIMERA &bull; Ecosistema Científico, Académico y Profesional</title>
     <style>
         :root {
             --card-bg: rgba(15, 23, 42, 0.90);
@@ -376,11 +376,24 @@
             transform-origin: center center;
         }
 
+        /* EFECTO APAGADO DE TV ANTIGUA */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
             70% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
+        }
+
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
+        @keyframes tvTurnOn {
+            0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
+            30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
+            60% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
+            100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+        }
+
+        .modal-box.crt-entry {
+            animation: tvTurnOn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .modal-box.crt-exit {
@@ -839,9 +852,9 @@
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
 
+            // Aplica la animación de entrada (TV Antigua invertido)
             modalBox.classList.remove('crt-exit');
-            modalBox.style.opacity = '1';
-            modalBox.style.transform = 'scale(1,1)';
+            modalBox.classList.add('crt-entry');
             
             modalTitle.innerHTML = "";
             modalBody.innerHTML = "";
@@ -899,10 +912,13 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
+                // Aplica la animación de salida (TV Antigua)
+                modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
 
                 setTimeout(() => {
                     backdrop.classList.remove('active');
+                    modalBox.classList.remove('crt-exit');
 
                     letters[index].style.color = '#c88b32';
                     currentLetterIndex++;
