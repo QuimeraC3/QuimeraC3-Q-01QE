@@ -912,14 +912,12 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                // Aplica la animación de salida (TV Antigua)
+                // Aplica la animación de salida (TV Antigua) y comienza el desvanecimiento del fondo al mismo tiempo
                 modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
+                backdrop.classList.remove('active');
 
                 setTimeout(() => {
-                    backdrop.classList.remove('active');
-                    modalBox.classList.remove('crt-exit');
-
                     letters[index].style.color = '#c88b32';
                     currentLetterIndex++;
                     selectedCount++;
@@ -930,6 +928,11 @@
                         enableFinalHyperlink();
                     }
                 }, 400);
+
+                // Se remueve la clase crt-exit una vez que el fondo queda totalmente transparente (800ms)
+                setTimeout(() => {
+                    modalBox.classList.remove('crt-exit');
+                }, 800);
             };
 
             closeBtn.onclick = triggerClose;
