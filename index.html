@@ -54,6 +54,26 @@
             opacity: 1;
         }
 
+        /* Canvas para Lluvia de Código Matrix */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        /* Clase de desvanecimiento a negro para elementos de la interfaz */
+        .fade-out-element {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 1.2s ease !important;
+        }
+
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -71,7 +91,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar (Basado en indexV) */
+        /* Navegación Top Bar */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -95,7 +115,7 @@
         .brand-logo {
             color: #ffffff;
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(0.85rem, 2vw, 1rem); /* Texto fluido */
+            font-size: clamp(0.85rem, 2vw, 1rem);
             font-weight: 700;
             text-decoration: none;
             letter-spacing: -0.01em;
@@ -109,7 +129,7 @@
 
         .nav-links {
             display: flex;
-            gap: clamp(0.5rem, 2vw, 1.25rem); /* Espaciado fluido */
+            gap: clamp(0.5rem, 2vw, 1.25rem);
             list-style: none;
             align-items: center;
             flex-wrap: wrap;
@@ -118,7 +138,7 @@
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
-            font-size: clamp(0.75rem, 1.5vw, 0.9rem); /* Texto fluido */
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
             font-weight: 500;
             transition: color 0.2s ease;
         }
@@ -147,18 +167,19 @@
             left: 51%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.5rem, 10vw, 6rem); /* Elástico para otras pantallas */
+            font-size: clamp(2.5rem, 10vw, 6rem);
             font-weight: 700;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: #e2a547; /* Tono cobre dorado */
+            color: #e2a547;
             display: inline-block;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff; /* Contorno blanco */
-            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); /* Sombra unificada */
+            -webkit-text-stroke: 1.5px #ffffff;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             white-space: nowrap;
             opacity: 0;
             z-index: 10;
+            transition: opacity 1s ease;
         }
 
         .quimera-word-container {
@@ -167,7 +188,7 @@
             left: 50%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.5rem, 10vw, 6rem); /* Texto fluido */
+            font-size: clamp(2.5rem, 10vw, 6rem);
             font-weight: 700;
             letter-spacing: 0.25em;
             line-height: 1.1;
@@ -206,6 +227,7 @@
             z-index: 10;
             -webkit-text-stroke: 0.75px #000000;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            transition: opacity 1s ease;
         }
 
         .exploration-box {
@@ -219,7 +241,7 @@
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Texto fluido */
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
             color: #cbd5e1;
             opacity: 0;
             transition: opacity 0.8s ease;
@@ -248,7 +270,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             color: #ffffff;
-            font-size: clamp(0.7rem, 1.2vw, 0.85rem); /* Texto fluido */
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem);
             opacity: 0;
             transition: opacity 500ms ease;
             z-index: 100;
@@ -262,9 +284,6 @@
             color: #e2e8f0;
         }
 
-        /* ========================================================== */
-        /* AJUSTE ESPECÍFICO PARA RESOLUCIÓN 1920x1080px (PROYECTOR)    */
-        /* ========================================================== */
         @media (min-width: 1400px) and (max-width: 1920px) and (max-height: 1080px) {
             .page-title {
                 top: 08vh;
@@ -281,9 +300,6 @@
             }
         }
 
-        /* ========================================================== */
-        /* OPTIMIZACIÓN RESPONSIVO PARA MÓVILES                        */
-        /* ========================================================== */
         @media (max-width: 900px) {
             body {
                 height: auto;
@@ -410,7 +426,7 @@
 
         .modal-box h2 {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem); /* Texto fluido */
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: #c88b32;
             margin-bottom: 1rem;
             padding-bottom: 0.4rem;
@@ -419,7 +435,7 @@
         }
 
         .modal-box p, .modal-box li {
-            font-size: clamp(0.9rem, 2vw, 1.02rem); /* Texto fluido */
+            font-size: clamp(0.9rem, 2vw, 1.02rem);
             color: #f1f5f9;
             margin-bottom: 1rem;
             line-height: 1.6;
@@ -436,7 +452,7 @@
             padding: 1rem;
             border-radius: 4px;
             font-weight: 600;
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Texto fluido */
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
             text-align: center;
             margin: 1rem 0;
             color: #5eead4;
@@ -464,10 +480,13 @@
     <!-- Capa de fondo animada -->
     <div class="bg-image" id="bg-image"></div>
 
+    <!-- Canvas para la Lluvia Matrix -->
+    <canvas id="matrix-canvas"></canvas>
+
     <!-- Capa de desvanecimiento inicial en blanco -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar (Estilo indexV) -->
+    <!-- Navegación Top Bar -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -851,9 +870,84 @@
                 if (blinks >= 10) {
                     clearInterval(blinkFive);
                     targetLetter.style.color = '#ffffff';
+
+                    // Si se selecciona la última letra 'A' (index 6)
+                    if (index === 6) {
+                        triggerMatrixAndFadeElements();
+                    }
+
                     showModalTyped(index);
                 }
             }, 100);
+        }
+
+        // Función para desvanecer elementos en negro e iniciar la lluvia Matrix
+        function triggerMatrixAndFadeElements() {
+            const bgImg = document.getElementById('bg-image');
+            if (bgImg) bgImg.classList.remove('visible');
+
+            const elementsToFade = [
+                document.getElementById('main-title'),
+                document.querySelector('.top-bar'),
+                document.getElementById('sub-text'),
+                document.getElementById('exp-box'),
+                document.querySelector('footer')
+            ];
+
+            elementsToFade.forEach(el => {
+                if (el) el.classList.add('fade-out-element');
+            });
+
+            startMatrixRain();
+            const canvas = document.getElementById('matrix-canvas');
+            if (canvas) canvas.style.opacity = '1';
+        }
+
+        // Generador del Código Matrix Dorado
+        let matrixInterval = null;
+        function startMatrixRain() {
+            const canvas = document.getElementById('matrix-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZカタカナアアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const fontSize = 16;
+            let columns = Math.floor(canvas.width / fontSize);
+            let drops = Array(columns).fill(1);
+
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+
+                    if (Math.random() > 0.88) {
+                        ctx.fillStyle = '#fffbeb'; // Brillo inicial de la gota
+                    } else {
+                        ctx.fillStyle = '#c88b32'; // Dorado / cobre principal
+                    }
+
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            if (matrixInterval) clearInterval(matrixInterval);
+            matrixInterval = setInterval(draw, 33);
         }
 
         async function showModalTyped(index) {
@@ -862,7 +956,6 @@
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
 
-            // Aplica la animación de entrada (TV Antigua invertido)
             modalBox.classList.remove('crt-exit');
             modalBox.classList.add('crt-entry');
             
@@ -922,7 +1015,7 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                // Aplica la animación de salida (TV Antigua) y comienza el desvanecimiento del fondo al mismo tiempo
+                // Animación de apagado de TV antigua (CRT exit)
                 modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
@@ -939,7 +1032,6 @@
                     }
                 }, 400);
 
-                // Se remueve la clase crt-exit una vez que el fondo queda totalmente transparente (800ms)
                 setTimeout(() => {
                     modalBox.classList.remove('crt-exit');
                 }, 800);
@@ -957,7 +1049,7 @@
             const wordContainer = document.getElementById('quimera-word');
             wordContainer.style.cursor = 'pointer';
 
-            const stepTime = 500 / letters.length;
+            const stepTime = 120;
 
             function runSequence() {
                 let i = 0;
