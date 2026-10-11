@@ -52,19 +52,33 @@
 
         .bg-image.visible {
             opacity: 1;
-            animation: bgKenBurns 30s ease-in-out infinite alternate;
         }
 
-        /* ANIMACIÓN DE DESPLAZAMIENTO DINÁMICO ORGÁNICO (EFECTO KEN BURNS / ZOOM LENTO) */
-        @keyframes bgKenBurns {
+        /* CAPA DE DESTELLO DE VIÑETA DINÁMICA (PERMANENCIA AMBIENTAL) */
+        .vignette-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 50px rgba(15, 118, 110, 0.2);
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .vignette-glow.visible {
+            opacity: 1;
+            animation: vignettePulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes vignettePulse {
             0% {
-                transform: scale(1) translate(0, 0);
-            }
-            50% {
-                transform: scale(1.06) translate(-1.5vw, -1vh);
+                box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(200, 139, 50, 0.15);
             }
             100% {
-                transform: scale(1.08) translate(1.5vw, 1vh);
+                box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.9), inset 0 0 70px rgba(56, 189, 248, 0.3);
             }
         }
 
@@ -493,6 +507,9 @@
 
     <!-- Capa de fondo animada -->
     <div class="bg-image" id="bg-image"></div>
+    
+    <!-- Capa de Destello de Viñeta Dinámica -->
+    <div class="vignette-glow" id="vignette-glow"></div>
 
     <!-- Canvas para la Lluvia Matrix -->
     <canvas id="matrix-canvas"></canvas>
@@ -736,6 +753,7 @@
             await new Promise(r => setTimeout(r, 1000));
 
             document.getElementById('bg-image').classList.add('visible');
+            document.getElementById('vignette-glow').classList.add('visible');
             await new Promise(r => setTimeout(r, 1000));
 
             document.querySelector('.top-bar').style.opacity = '1';
@@ -900,6 +918,9 @@
             const bgImg = document.getElementById('bg-image');
             if (bgImg) bgImg.classList.remove('visible');
 
+            const vignette = document.getElementById('vignette-glow');
+            if (vignette) vignette.classList.remove('visible');
+
             const elementsToFade = [
                 document.getElementById('main-title'),
                 document.querySelector('.top-bar'),
@@ -1029,7 +1050,7 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                // Animación de apagado de TV antigua (CRT exit)
+                // Animación de apagado de TV antigua (crt exit)
                 modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
