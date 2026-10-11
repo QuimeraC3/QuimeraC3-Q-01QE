@@ -36,26 +36,26 @@
             filter: blur(12px);
         }
 
+        /* Imagen de fondo completamente estática, nítida y visible en su totalidad */
         .bg-image {
             position: fixed;
-            top: -5%;
-            left: -5%;
-            width: 110vw;
-            height: 110vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(rgba(11, 19, 41, 0.01), rgba(11, 19, 41, 0.01)), url('Quimera.webp');
             background-size: cover;
             background-position: center center;
             z-index: -1;
             opacity: 0;
-            transition: opacity 1.5s ease, transform 0.1s cubic-bezier(0.03, 0.98, 0.52, 0.99);
-            will-change: transform;
+            transition: opacity 1.5s ease;
         }
 
         .bg-image.visible {
             opacity: 1;
         }
 
-        /* CAPA DE LUZ REACTIVA AL CURSOR (PARALLAX HOLOGRÁFICO) */
+        /* Capa de luz reactiva exclusiva para el movimiento del puntero */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -64,7 +64,7 @@
             height: 100vh;
             pointer-events: none;
             z-index: 0;
-            background: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.15), rgba(200, 139, 50, 0.08) 40%, transparent 80%);
+            background: radial-gradient(circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.18), rgba(200, 139, 50, 0.1) 45%, transparent 80%);
             opacity: 0;
             transition: opacity 1.5s ease;
         }
@@ -496,10 +496,10 @@
     <!-- Elemento de Audio -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo animada con Parallax -->
+    <!-- Capa de fondo estática, nítida y completa -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de Luz Reactiva al Cursor -->
+    <!-- Capa de luz reactiva exclusiva del puntero -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
     <!-- Canvas para la Lluvia Matrix -->
@@ -551,22 +551,14 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (MODULACIÓN DE LUZ Y PARALLAX)
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
             
-            // Actualizar variables CSS para el resplandor radial
+            // Actualizar las coordenadas de la luz para que siga exactamente al puntero del ratón
             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
-
-            // Desplazamiento sutil tipo Parallax en la imagen de fondo
-            const bgImage = document.getElementById('bg-image');
-            if (bgImage && bgImage.classList.contains('visible')) {
-                const moveX = (x / window.innerWidth - 0.5) * -20;
-                const moveY = (y / window.innerHeight - 0.5) * -20;
-                bgImage.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-            }
         });
 
         // Control de Reproducción de Música
