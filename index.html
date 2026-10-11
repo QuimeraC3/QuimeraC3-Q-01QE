@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Imagen de fondo completamente estática, nítida y visible en su totalidad */
+        /* Imagen de fondo completamente estática, nítida y visible en su totalidad[cite: 7] */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva para el movimiento del puntero */
+        /* Capa de luz reactiva exclusiva para el movimiento del puntero[cite: 7] */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -180,6 +180,7 @@
             color: #ffffff;
         }
 
+        /* EFECTO QUANTUM ASSEMBLY PARA EL TÍTULO PRINCIPAL */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -198,7 +199,31 @@
             white-space: nowrap;
             opacity: 0;
             z-index: 10;
-            transition: opacity 1s ease;
+        }
+
+        .page-title.quantum-assembling {
+            animation: quantumAssembleAnim 1.2s cubic-bezier(0.15, 0.9, 0.2, 1) forwards;
+        }
+
+        @keyframes quantumAssembleAnim {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(2.5) skewX(-20deg);
+                filter: blur(25px) brightness(3);
+                letter-spacing: 0.5em;
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-50%) scale(0.95) skewX(5deg);
+                filter: blur(8px) brightness(1.8);
+                letter-spacing: 0.15em;
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1) skewX(0deg);
+                filter: blur(0px) brightness(1);
+                letter-spacing: 0em;
+            }
         }
 
         .quimera-word-container {
@@ -496,10 +521,10 @@
     <!-- Elemento de Audio -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa -->
+    <!-- Capa de fondo estática, nítida y completa[cite: 7] -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero -->
+    <!-- Capa de luz reactiva exclusiva del puntero[cite: 7] -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
     <!-- Canvas para la Lluvia Matrix -->
@@ -519,7 +544,8 @@
         </div>
     </nav>
 
-    <h1 class="page-title" id="main-title"></h1>
+    <!-- Título principal con Quantum Assembly -->
+    <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
@@ -551,12 +577,11 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 7]
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
             
-            // Actualizar las coordenadas de la luz para que siga exactamente al puntero del ratón
             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
@@ -621,7 +646,7 @@
             {
                 title: "MÁS QUE INFORMACIÓN: CONOCIMIENTO CON PROPÓSITO.",
                 content: [
-                    { type: 'p', text: "QUIMERA no busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
+                    { type: 'p', text: "QUIMERA não busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
                     { type: 'p', text: "Para ello, cada proyecto puede recorrer un proceso continuo:" },
                     { type: 'flow', text: "PREGUNTA → INVESTIGACIÓN → ANÁLISIS → CONOCIMIENTO → DESARROLLO → FORMACIÓN → APLICACIÓN → EVALUACIÓN" },
                     { type: 'p', text: "De esta manera, la investigación puede convertirse en formación; la formación, en práctica; y la práctica, nuevamente, en nuevas preguntas que impulsen el conocimiento." }
@@ -777,11 +802,13 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            await typeWriter('main-title', '¿QUÉ ES..?', 80);
-            await new Promise(r => setTimeout(r, 400));
+            // Disparo instantáneo de Quantum Assembly para el título principal
+            const mainTitle = document.getElementById('main-title');
+            mainTitle.classList.add('quantum-assembling');
+            await new Promise(r => setTimeout(r, 1200));
 
             document.getElementById('quimera-word').classList.add('visible');
-            await new Promise(r => setTimeout(r, 800));
+            await new Promise(r => setTimeout(r, 400));
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
