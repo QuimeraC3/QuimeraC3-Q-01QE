@@ -52,6 +52,23 @@
 
         .bg-image.visible {
             opacity: 1;
+            animation: bgBreathing 15s ease-in-out infinite alternate;
+        }
+
+        /* ANIMACIÓN DE RESPIRACIÓN DE COLOR Y TONO PARA EL FONDO */
+        @keyframes bgBreathing {
+            0% {
+                filter: brightness(100%) contrast(100%) saturate(100%) hue-rotate(0deg);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(112%) contrast(108%) saturate(115%) hue-rotate(-8deg);
+                transform: scale(1.02);
+            }
+            100% {
+                filter: brightness(98%) contrast(105%) saturate(95%) hue-rotate(8deg);
+                transform: scale(1.04);
+            }
         }
 
         /* Canvas para Lluvia de Código Matrix */
