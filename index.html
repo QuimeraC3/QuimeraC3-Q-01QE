@@ -180,11 +180,10 @@
             color: #ffffff;
         }
 
-        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA Y SUBTÍTULO */
+        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA Y SUBTÍTULO (SIN POSITION RELATIVE PARA EVITAR DESPLAZAMIENTOS) */
         .laser-burn-effect {
             opacity: 0;
             clip-path: inset(0 100% 0 0);
-            position: relative;
         }
 
         .laser-burn-effect.active-laser {
@@ -313,7 +312,7 @@
             color: #e2a547;
             display: inline-block;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff; /* Delineado blanco original preservado */
+            -webkit-text-stroke: 1.5px #ffffff;
             white-space: nowrap;
             z-index: 10;
         }
@@ -328,7 +327,7 @@
             font-weight: 700;
             letter-spacing: 0.25em;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #000000; /* Delineado negro original preservado */
+            -webkit-text-stroke: 1.5px #000000;
             cursor: default;
             white-space: nowrap;
             z-index: 10;
@@ -353,7 +352,7 @@
             color: #ffffff;
             text-align: center;
             z-index: 10;
-            -webkit-text-stroke: 0.75px #000000; /* Delineado negro original preservado */
+            -webkit-text-stroke: 0.75px #000000;
         }
 
         .exploration-box {
