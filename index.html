@@ -265,39 +265,37 @@
             }
         }
 
-        /* EFECTO COMBINADO: HOLOGRAM-MODE & HOLOGRAM-FLICKER */
-        .laser-burn-effect.hologram-active {
-            animation: hologramModeFloat 4s ease-in-out infinite alternate, hologramFlickerAnim 3.5s steps(1, end) infinite;
-            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)) drop-shadow(0 0 15px rgba(200, 139, 50, 0.4));
+        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER */
+        .hologram-mode {
+            animation: hologramGlow 3s ease-in-out infinite alternate, hologramFlicker 4s steps(1) infinite;
         }
 
-        @keyframes hologramModeFloat {
-            0% { transform: translateX(-50%) translateY(0px); }
-            100% { transform: translateX(-50%) translateY(-3px); }
+        @keyframes hologramGlow {
+            0% {
+                filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5)) drop-shadow(0 0 12px rgba(15, 118, 110, 0.4));
+                opacity: 0.92;
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 20px rgba(56, 189, 248, 0.6));
+                opacity: 1;
+            }
+            100% {
+                filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5)) drop-shadow(0 0 12px rgba(15, 118, 110, 0.4));
+                opacity: 0.92;
+            }
         }
 
-        /* Excepción para elementos que no usan translateX(-50%) genérico en el float */
-        #main-title.laser-burn-effect.hologram-active {
-            animation: hologramTitleFloat 4s ease-in-out infinite alternate, hologramFlickerAnim 3.5s steps(1, end) infinite;
-        }
-
-        @keyframes hologramTitleFloat {
-            0% { transform: translateX(-50%) translateY(0px); }
-            100% { transform: translateX(-50%) translateY(-3px); }
-        }
-
-        @keyframes hologramFlickerAnim {
-            0%, 100% { opacity: 0.95; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
-            3% { opacity: 0.4; filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.2)); }
-            6% { opacity: 0.98; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9)); }
-            7% { opacity: 0.5; }
-            8% { opacity: 0.95; }
-            45% { opacity: 0.92; }
-            46% { opacity: 0.6; filter: drop-shadow(0 0 3px rgba(200, 139, 50, 0.3)); }
-            47% { opacity: 0.98; }
-            78% { opacity: 0.95; }
-            79% { opacity: 0.45; filter: drop-shadow(0 0 1px transparent); }
-            80% { opacity: 0.96; }
+        @keyframes hologramFlicker {
+            0%, 100% { opacity: 1; transform: translate(0, 0); }
+            3% { opacity: 0.82; transform: translate(-1px, 0.5px); }
+            6% { opacity: 1; transform: translate(0, 0); }
+            7% { opacity: 0.5; transform: translate(1px, -0.5px); }
+            8% { opacity: 1; transform: translate(0, 0); }
+            45% { opacity: 0.95; transform: translate(0, 0); }
+            46% { opacity: 0.7; transform: translate(-0.5px, 0); }
+            47% { opacity: 1; transform: translate(0, 0); }
+            82% { opacity: 0.88; transform: translate(0.5px, 0.5px); }
+            84% { opacity: 1; transform: translate(0, 0); }
         }
 
         .page-title {
@@ -845,28 +843,28 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? y activación de Hologram-Mode + Flicker
+            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? + Hologram Mode/Flicker al finalizar
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            mainTitle.classList.add('hologram-active');
+            mainTitle.classList.add('hologram-mode');
 
-            // 2. Entrada Láser para la palabra QUIMERA y activación de Hologram-Mode + Flicker
+            // 2. Entrada Láser para la palabra QUIMERA + Hologram Mode/Flicker al finalizar
             const quimeraWord = document.getElementById('quimera-word');
             quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            quimeraWord.classList.add('hologram-active');
+            quimeraWord.classList.add('hologram-mode');
             
             // Secuencia interna de colores para las letras de QUIMERA tras su entrada láser
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Entrada Láser para el Subtítulo y activación de Hologram-Mode + Flicker
+            // 3. Entrada Láser para el Subtítulo + Hologram Mode/Flicker al finalizar
             const subText = document.getElementById('sub-text');
             subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            subText.classList.add('hologram-active');
+            subText.classList.add('hologram-mode');
 
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
