@@ -6,13 +6,13 @@
     <title>¿QUE ES..? QUIMERA &bull; Ecosistema Científico, Académico y Profesional</title>
     <style>
         :root {
-            --card-bg: rgba(15, 23, 42, 0.90);
-            --card-border: rgba(255, 255, 255, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #0f766e;
-            --accent: #c88b32;
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            --card-bg: rgba(15, 23, 42, 0.90)[cite: 4];
+            --card-border: rgba(255, 255, 255, 0.15)[cite: 4];
+            --text-main: #f8fafc[cite: 4];
+            --text-muted: #94a3b8[cite: 4];
+            --primary: #0f766e[cite: 4];
+            --accent: #c88b32[cite: 4];
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)[cite: 4];
         }
 
         * {
@@ -888,6 +888,9 @@
                 typeExp();
             });
             await new Promise(r => setTimeout(r, 400));
+
+            // Activación del efecto holográfico en el recuadro de exploración al terminar su escritura
+            document.getElementById('exp-box').classList.add('hologram-mode');
 
             document.querySelector('footer').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
