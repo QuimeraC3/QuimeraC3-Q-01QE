@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO LÁSER COMBINADO CON HOLOGRAMA CONTINUO */
+        /* EFECTO LÁSER COMBINADO CON HOLOGRAM MODE Y FLICKER PERMANENTE */
         .laser-burn-effect {
             opacity: 0;
             clip-path: inset(0 100% 0 0);
@@ -190,11 +190,6 @@
         .laser-burn-effect.active-laser {
             opacity: 1;
             animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-        }
-
-        /* Una vez terminada la entrada, se activa el holograma persistente */
-        .laser-burn-effect.hologram-active {
-            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards, hologramFlicker 3.5s ease-in-out infinite;
         }
 
         .laser-burn-effect.active-laser::before {
@@ -224,6 +219,11 @@
             mix-blend-mode: color-dodge;
             animation: hyperLaserSparksWave 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
             z-index: 12;
+        }
+
+        /* Clase que activa el Hologram Mode y Hologram Flicker de manera permanente tras la entrada */
+        .hologram-permanent {
+            animation: hologramModeGlow 3s ease-in-out infinite alternate, hologramFlickerAnim 4s steps(1) infinite;
         }
 
         @keyframes hyperLaserReveal {
@@ -270,28 +270,25 @@
             }
         }
 
-        /* Animación de Holograma (parpadeo de interferencia y brillo cian/dorado sutil) */
-        @keyframes hologramFlicker {
-            0%, 100% {
-                opacity: 1;
-                filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+        /* Animación de brillo holográfico permanente */
+        @keyframes hologramModeGlow {
+            0% {
+                filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.6)) drop-shadow(0 0 10px rgba(15, 118, 110, 0.4));
             }
-            33% {
-                opacity: 0.92;
-                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)) brightness(1.05);
+            100% {
+                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.9)) drop-shadow(0 0 18px rgba(200, 139, 50, 0.7));
             }
-            35% {
-                opacity: 0.7;
-                filter: drop-shadow(0 0 2px rgba(200, 139, 50, 0.3));
-            }
-            37% {
-                opacity: 0.98;
-                filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
-            }
-            70% {
-                opacity: 0.94;
-                filter: drop-shadow(0 0 5px rgba(200, 139, 50, 0.5));
-            }
+        }
+
+        /* Animación de parpadeo holográfico sutil (Flicker) */
+        @keyframes hologramFlickerAnim {
+            0%, 100% { opacity: 1; transform: translate(0, 0); }
+            3% { opacity: 0.85; transform: translate(-1px, 0.5px); }
+            6% { opacity: 1; transform: translate(0, 0); }
+            45% { opacity: 0.92; transform: translate(1px, -0.5px); }
+            48% { opacity: 1; transform: translate(0, 0); }
+            82% { opacity: 0.88; transform: translate(-0.5px, -0.5px); }
+            85% { opacity: 1; transform: translate(0, 0); }
         }
 
         .page-title {
@@ -631,15 +628,15 @@
         </div>
     </nav>
 
-    <!-- Título principal con Hyper-Intense Laser + Holograma -->
+    <!-- Título principal con Hyper-Intense Laser -->
     <h1 class="page-title laser-burn-effect" id="main-title">¿QUÉ ES..?</h1>
 
-    <!-- Palabra QUIMERA con Hyper-Intense Laser + Holograma -->
+    <!-- Palabra QUIMERA con Hyper-Intense Laser -->
     <div class="quimera-word-container laser-burn-effect" id="quimera-word">
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
     </div>
 
-    <!-- Subtítulo con Hyper-Intense Laser + Holograma -->
+    <!-- Subtítulo con Hyper-Intense Laser -->
     <div class="subtitle-text laser-burn-effect" id="sub-text"></div>
 
     <div class="exploration-box" id="exp-box">
@@ -839,28 +836,28 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? + Activación de Holograma
+            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? y adición de Holograma permanente
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            mainTitle.classList.add('hologram-active');
+            mainTitle.classList.add('hologram-permanent');
 
-            // 2. Entrada Láser para la palabra QUIMERA + Activación de Holograma
+            // 2. Entrada Láser para la palabra QUIMERA y adición de Holograma permanente
             const quimeraWord = document.getElementById('quimera-word');
             quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            quimeraWord.classList.add('hologram-active');
+            quimeraWord.classList.add('hologram-permanent');
             
             // Secuencia interna de colores para las letras de QUIMERA tras su entrada láser
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Entrada Láser para el Subtítulo + Activación de Holograma
+            // 3. Entrada Láser para el Subtítulo y adición de Holograma permanente
             const subText = document.getElementById('sub-text');
             subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-            subText.classList.add('hologram-active');
+            subText.classList.add('hologram-permanent');
 
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
