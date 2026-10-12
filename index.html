@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Capa de fondo estática, nítida y completa[cite: 5] */
+        /* Capa de fondo estática, nítida y completa */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero[cite: 5] */
+        /* Capa de luz reactiva exclusiva del puntero */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix[cite: 5] */
+        /* Canvas para Lluvia de Código Matrix */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Clase de desvanecimiento a negro para elementos de la interfaz[cite: 5] */
+        /* Clase de desvanecimiento a negro para elementos de la interfaz */
         .fade-out-element {
             opacity: 0 !important;
             pointer-events: none !important;
@@ -110,7 +110,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar[cite: 5] */
+        /* Navegación Top Bar */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -180,51 +180,19 @@
             color: #ffffff;
         }
 
-        /* EFECTO HYPER-INTENSE LASER COMPARTIDO PARA TÍTULO PRINCIPAL Y QUIMERA */
-        .page-title, .quimera-word-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: 700;
-            letter-spacing: 0em;
-            text-transform: uppercase;
-            color: #e2a547;
-            display: inline-block;
-            line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff;
-            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-            white-space: nowrap;
+        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA Y SUBTÍTULO */
+        .laser-burn-effect {
             opacity: 0;
-            z-index: 10;
-        }
-
-        .page-title {
-            top: 07vh;
-            font-size: clamp(2.0rem, 09vw, 5rem);
-            left: 51%;
-            transform: translateX(-50%);
-        }
-
-        .quimera-word-container {
-            top: 65vh;
-            letter-spacing: 0.25em;
-            -webkit-text-stroke: 1.5px #000000;
-            font-size: clamp(2.5rem, 10vw, 6rem);
-        }
-
-        /* Aplicación del efecto Láser */
-        .page-title.hyper-laser-burning,
-        .quimera-word-container.hyper-laser-burning {
-            opacity: 1;
             clip-path: inset(0 100% 0 0);
-            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
             position: relative;
         }
 
-        /* Núcleo de plasma hiper-brillante con doble haz frontal */
-        .page-title.hyper-laser-burning::before,
-        .quimera-word-container.hyper-laser-burning::before {
+        .laser-burn-effect.active-laser {
+            opacity: 1;
+            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+        }
+
+        .laser-burn-effect.active-laser::before {
             content: '';
             position: absolute;
             top: -30px;
@@ -238,9 +206,7 @@
             filter: blur(0.5px);
         }
 
-        /* Explosión de chispas y destello de alta energía envolvente */
-        .page-title.hyper-laser-burning::after,
-        .quimera-word-container.hyper-laser-burning::after {
+        .laser-burn-effect.active-laser::after {
             content: '';
             position: absolute;
             top: -10px;
@@ -258,16 +224,13 @@
         @keyframes hyperLaserReveal {
             0% {
                 clip-path: inset(0 100% 0 0);
-                transform: translateX(-50%) scale(0.85);
                 filter: brightness(4) contrast(200%) drop-shadow(0 0 30px rgba(56, 189, 248, 1));
             }
             50% {
-                transform: translateX(-50%) scale(1.03);
                 filter: brightness(2.5) contrast(150%) drop-shadow(0 0 15px rgba(200, 139, 50, 0.9));
             }
             100% {
                 clip-path: inset(0 0 0 0);
-                transform: translateX(-50%) scale(1);
                 filter: brightness(1) contrast(100%) drop-shadow(0 0 0px transparent);
             }
         }
@@ -302,13 +265,48 @@
             }
         }
 
+        .page-title {
+            position: absolute;
+            top: 07vh;
+            left: 51%;
+            transform: translateX(-50%);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.0rem, 09vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 0em;
+            text-transform: uppercase;
+            color: #e2a547;
+            display: inline-block;
+            line-height: 1.1;
+            -webkit-text-stroke: 1.5px #ffffff;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .quimera-word-container {
+            position: absolute;
+            top: 65vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            line-height: 1.1;
+            -webkit-text-stroke: 1.5px #000000;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+            cursor: default;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
         .quimera-letter {
             display: inline-block;
             color: #ffffff;
             transition: color 0.4s ease;
         }
 
-        /* EFECTO LÁSER PARA EL SUBTÍTULO (RESPETANDO SU POSICIÓN ORIGINAL) */
         .subtitle-text {
             position: absolute;
             top: calc(65vh + 5.5rem + 1.0rem);
@@ -321,70 +319,9 @@
             width: 90%;
             color: #ffffff;
             text-align: center;
-            opacity: 0;
             z-index: 10;
             -webkit-text-stroke: 0.75px #000000;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        .subtitle-text.hyper-laser-burning {
-            opacity: 1;
-            clip-path: inset(0 100% 0 0);
-            animation: subLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            position: relative;
-        }
-
-        .subtitle-text.hyper-laser-burning::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            bottom: -20px;
-            left: 0;
-            width: 12px;
-            background: radial-gradient(circle, #ffffff 0%, #38bdf8 40%, #c88b32 80%, transparent 100%);
-            box-shadow: 0 0 25px #38bdf8, 0 0 50px #fffbeb, inset 0 0 10px #ffffff;
-            animation: subLaserBarMove 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            z-index: 15;
-            filter: blur(0.5px);
-        }
-
-        .subtitle-text.hyper-laser-burning::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 110%;
-            pointer-events: none;
-            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(56,189,248,0.5) 30%, transparent 100%);
-            mix-blend-mode: color-dodge;
-            animation: subLaserSparksWave 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            z-index: 12;
-        }
-
-        @keyframes subLaserReveal {
-            0% {
-                clip-path: inset(0 100% 0 0);
-                transform: translateX(-50%) scale(0.95);
-                filter: brightness(3) contrast(150%) drop-shadow(0 0 20px rgba(56, 189, 248, 0.8));
-            }
-            100% {
-                clip-path: inset(0 0 0 0);
-                transform: translateX(-50%) scale(1);
-                filter: brightness(1) contrast(100%) drop-shadow(0 0 0px transparent);
-            }
-        }
-
-        @keyframes subLaserBarMove {
-            0% { left: 0%; opacity: 1; transform: scaleY(1.5); }
-            90% { opacity: 1; }
-            100% { left: 100%; opacity: 0; transform: scaleY(0.5); }
-        }
-
-        @keyframes subLaserSparksWave {
-            0% { opacity: 1; clip-path: inset(0 100% 0 0); }
-            100% { opacity: 0; clip-path: inset(0 0 0 0); }
         }
 
         .exploration-box {
@@ -514,7 +451,7 @@
             }
         }
 
-        /* Recuadro Central Modal[cite: 5] */
+        /* Recuadro Central Modal */
         #modal-backdrop {
             position: fixed;
             top: 0;
@@ -552,7 +489,7 @@
             transform-origin: center center;
         }
 
-        /* EFECTO APAGADO DE TV ANTIGUA[cite: 5] */
+        /* EFECTO APAGADO DE TV ANTIGUA */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -560,7 +497,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO[cite: 5] */
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -631,22 +568,22 @@
 </head>
 <body>
 
-    <!-- Elemento de Audio[cite: 5] -->
+    <!-- Elemento de Audio -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa[cite: 5] -->
+    <!-- Capa de fondo estática, nítida y completa -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero[cite: 5] -->
+    <!-- Capa de luz reactiva exclusiva del puntero -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix[cite: 5] -->
+    <!-- Canvas para la Lluvia Matrix -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Capa de desvanecimiento inicial en blanco[cite: 5] -->
+    <!-- Capa de desvanecimiento inicial en blanco -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar[cite: 5] -->
+    <!-- Navegación Top Bar -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -658,14 +595,15 @@
     </nav>
 
     <!-- Título principal con Hyper-Intense Laser -->
-    <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
+    <h1 class="page-title laser-burn-effect" id="main-title">¿QUÉ ES..?</h1>
 
-    <div class="quimera-word-container" id="quimera-word">
+    <!-- Palabra QUIMERA con Hyper-Intense Laser -->
+    <div class="quimera-word-container laser-burn-effect" id="quimera-word">
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
     </div>
 
-    <!-- Subtítulo con Hyper-Intense Laser sincronizado -->
-    <div class="subtitle-text" id="sub-text">Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.</div>
+    <!-- Subtítulo con Hyper-Intense Laser -->
+    <div class="subtitle-text laser-burn-effect" id="sub-text"></div>
 
     <div class="exploration-box" id="exp-box">
         <p id="exp-title"></p>
@@ -676,7 +614,7 @@
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
     </footer>
 
-    <!-- Modal[cite: 5] -->
+    <!-- Modal -->
     <div id="modal-backdrop">
         <div class="modal-box" id="modal-content-box">
             <h2 id="modal-title"></h2>
@@ -691,7 +629,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 5]
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
@@ -700,7 +638,7 @@
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
-        // Control de Reproducción de Música[cite: 5]
+        // Control de Reproducción de Música
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -721,7 +659,7 @@
             }
         });
 
-        // Control de Pantalla Completa[cite: 5]
+        // Control de Pantalla Completa
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -835,58 +773,6 @@
             }
         ];
 
-        function typeWriter(elementId, text, speed = 35) {
-            return new Promise(resolve => {
-                const el = document.getElementById(elementId);
-                el.innerHTML = '';
-                el.style.opacity = 1; 
-                let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        el.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
-
-        function typeWriterHTML(element, htmlString, speed = 20) {
-            return new Promise(resolve => {
-                element.innerHTML = '';
-                const tokens = htmlString.match(/(<\/?[^>]+(>|$)|[^<]+)/g) || [htmlString];
-                let tokenIdx = 0;
-                let charIdx = 0;
-                
-                function type() {
-                    if (tokenIdx < tokens.length) {
-                        let currentToken = tokens[tokenIdx];
-                        if (currentToken.startsWith('<')) {
-                            element.innerHTML += currentToken;
-                            tokenIdx++;
-                            setTimeout(type, speed);
-                        } else {
-                            if (charIdx < currentToken.length) {
-                                element.innerHTML += currentToken.charAt(charIdx);
-                                charIdx++;
-                                setTimeout(type, speed);
-                            } else {
-                                charIdx = 0;
-                                tokenIdx++;
-                                setTimeout(type, speed);
-                            }
-                        }
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
-
         async function runIntroSequence() {
             const whiteOverlay = document.getElementById('intro-overlay');
             whiteOverlay.classList.add('fade-out');
@@ -916,29 +802,46 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Disparo del Hyper-Intense Laser para el título principal "¿QUÉ ES..?"
+            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..?
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('hyper-laser-burning');
+            mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
 
-            // 2. Disparo del Hyper-Intense Laser para la palabra "QUIMERA" respetando el tiempo y orden exactos
+            // 2. Entrada Láser para la palabra QUIMERA (respetando su posición y secuencia exacta)
             const quimeraWord = document.getElementById('quimera-word');
-            quimeraWord.classList.add('visible');
-            quimeraWord.classList.add('hyper-laser-burning');
+            quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
-
+            
+            // Secuencia interna de colores para las letras de QUIMERA tras su entrada láser
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Disparo del Hyper-Intense Laser para el subtítulo manteniendo su posición original
+            // 3. Entrada Láser para el Subtítulo (respetando su posición y texto exacto)
             const subText = document.getElementById('sub-text');
-            subText.classList.add('hyper-laser-burning');
+            subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
+            subText.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
 
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
 
-            await typeWriter('exp-title', 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?', 25);
+            // Escritura del cuadro de exploración
+            const expTitleEl = document.getElementById('exp-title');
+            const exploreText = 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?';
+            expTitleEl.style.opacity = 1;
+            let expIdx = 0;
+            await new Promise(resolveExp => {
+                function typeExp() {
+                    if (expIdx < exploreText.length) {
+                        expTitleEl.innerHTML += exploreText.charAt(expIdx);
+                        expIdx++;
+                        setTimeout(typeExp, 25);
+                    } else {
+                        resolveExp();
+                    }
+                }
+                typeExp();
+            });
             await new Promise(r => setTimeout(r, 400));
 
             document.querySelector('footer').classList.add('visible');
@@ -1223,6 +1126,39 @@
                     triggerClose();
                 }
             };
+        }
+
+        async function typeWriterHTML(element, htmlString, speed = 20) {
+            return new Promise(resolve => {
+                element.innerHTML = '';
+                const tokens = htmlString.match(/(<\/?[^>]+(>|$)|[^<]+)/g) || [htmlString];
+                let tokenIdx = 0;
+                let charIdx = 0;
+                
+                function type() {
+                    if (tokenIdx < tokens.length) {
+                        let currentToken = tokens[tokenIdx];
+                        if (currentToken.startsWith('<')) {
+                            element.innerHTML += currentToken;
+                            tokenIdx++;
+                            setTimeout(type, speed);
+                        } else {
+                            if (charIdx < currentToken.length) {
+                                element.innerHTML += currentToken.charAt(charIdx);
+                                charIdx++;
+                                setTimeout(type, speed);
+                            } else {
+                                charIdx = 0;
+                                tokenIdx++;
+                                setTimeout(type, speed);
+                            }
+                        }
+                    } else {
+                        resolve();
+                    }
+                }
+                type();
+            });
         }
 
         function enableFinalHyperlink() {
