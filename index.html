@@ -6,13 +6,13 @@
     <title>¿QUE ES..? QUIMERA &bull; Ecosistema Científico, Académico y Profesional</title>
     <style>
         :root {
-            --card-bg: rgba(15, 23, 42, 0.90)[cite: 5];
-            --card-border: rgba(255, 255, 255, 0.15)[cite: 5];
-            --text-main: #f8fafc[cite: 5];
-            --text-muted: #94a3b8[cite: 5];
-            --primary: #0f766e[cite: 5];
-            --accent: #c88b32[cite: 5];
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)[cite: 5];
+            --card-bg: rgba(15, 23, 42, 0.90);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #0f766e;
+            --accent: #c88b32;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
         }
 
         * {
@@ -265,20 +265,23 @@
             }
         }
 
-        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER CON BRILLO NEÓN VISIBLE */
+        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER CON LUCES RGB */
         .hologram-mode {
-            animation: hologramNeonPulse 3s ease-in-out infinite alternate, hologramFlicker 4s steps(1) infinite;
+            animation: hologramGlow 3s ease-in-out infinite alternate, hologramFlicker 4s steps(1) infinite;
         }
 
-        @keyframes hologramNeonPulse {
+        @keyframes hologramGlow {
             0% {
-                text-shadow: 0 0 8px rgba(56, 189, 248, 0.6), 0 0 20px rgba(15, 118, 110, 0.4), 4px 4px 10px rgba(0, 0, 0, 0.8);
+                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)) drop-shadow(0 0 20px rgba(15, 118, 110, 0.6)) drop-shadow(0 0 35px rgba(200, 139, 50, 0.5));
+                opacity: 0.92;
             }
             50% {
-                text-shadow: 0 0 15px rgba(56, 189, 248, 1), 0 0 30px rgba(56, 189, 248, 0.7), 0 0 45px rgba(200, 139, 50, 0.5), 4px 4px 10px rgba(0, 0, 0, 0.8);
+                filter: drop-shadow(0 0 16px rgba(56, 189, 248, 1)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 50px rgba(200, 139, 50, 0.7));
+                opacity: 1;
             }
             100% {
-                text-shadow: 0 0 8px rgba(56, 189, 248, 0.6), 0 0 20px rgba(15, 118, 110, 0.4), 4px 4px 10px rgba(0, 0, 0, 0.8);
+                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)) drop-shadow(0 0 20px rgba(15, 118, 110, 0.6)) drop-shadow(0 0 35px rgba(200, 139, 50, 0.5));
+                opacity: 0.92;
             }
         }
 
@@ -308,7 +311,7 @@
             color: #e2a547;
             display: inline-block;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff; /* Delineado blanco original preservado */
+            -webkit-text-stroke: 1.5px #ffffff;
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             white-space: nowrap;
             z-index: 10;
@@ -324,7 +327,7 @@
             font-weight: 700;
             letter-spacing: 0.25em;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #000000; /* Delineado negro original preservado */
+            -webkit-text-stroke: 1.5px #000000;
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             cursor: default;
             white-space: nowrap;
@@ -350,7 +353,7 @@
             color: #ffffff;
             text-align: center;
             z-index: 10;
-            -webkit-text-stroke: 0.75px #000000; /* Delineado negro original preservado */
+            -webkit-text-stroke: 0.75px #000000;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
         }
 
@@ -736,7 +739,7 @@
             {
                 title: "MÁS QUE INFORMACIÓN: CONOCIMIENTO CON PROPÓSITO.",
                 content: [
-                    { type: 'p', text: "QUIMERA não busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
+                    { type: 'p', text: "QUIMERA no busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
                     { type: 'p', text: "Para ello, cada proyecto puede recorrer un proceso continuo:" },
                     { type: 'flow', text: "PREGUNTA → INVESTIGACIÓN → ANÁLISIS → CONOCIMIENTO → DESARROLLO → FORMACIÓN → APLICACIÓN → EVALUACIÓN" },
                     { type: 'p', text: "De esta manera, la investigación puede convertirse en formación; la formación, en práctica; y la práctica, nuevamente, en nuevas preguntas que impulsen el conocimiento." }
@@ -844,12 +847,14 @@
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
+            mainTitle.classList.remove('active-laser');
             mainTitle.classList.add('hologram-mode');
 
             // 2. Entrada Láser para la palabra QUIMERA + Hologram Mode/Flicker al finalizar
             const quimeraWord = document.getElementById('quimera-word');
             quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
+            quimeraWord.classList.remove('active-laser');
             quimeraWord.classList.add('hologram-mode');
             
             // Secuencia interna de colores para las letras de QUIMERA tras su entrada láser
@@ -861,6 +866,7 @@
             subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
+            subText.classList.remove('active-laser');
             subText.classList.add('hologram-mode');
 
             document.getElementById('exp-box').classList.add('visible');
