@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO ULTRA-LÁSER CON PLASMA Y DOBLE HAZ (ESTABLE Y FIRME) */
+        /* EFECTO DE LÁSER COMPÚSTICAMENTE ESTABLE PARA TÍTULOS Y TEXTOS */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -208,8 +208,9 @@
             position: relative;
         }
 
-        /* Núcleo de plasma hiper-brillante con doble haz frontal */
-        .page-title.hyper-laser-burning::before {
+        .page-title.hyper-laser-burning::before,
+        .quimera-word-container.hyper-laser-burning::before,
+        .subtitle-text.hyper-laser-burning::before {
             content: '';
             position: absolute;
             top: -30px;
@@ -223,8 +224,9 @@
             filter: blur(0.5px);
         }
 
-        /* Explosión de chispas y destello de alta energía envolvente */
-        .page-title.hyper-laser-burning::after {
+        .page-title.hyper-laser-burning::after,
+        .quimera-word-container.hyper-laser-burning::after,
+        .subtitle-text.hyper-laser-burning::after {
             content: '';
             position: absolute;
             top: -10px;
@@ -300,13 +302,32 @@
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             cursor: default;
             opacity: 0;
-            transition: opacity 0.8s ease;
             white-space: nowrap;
             z-index: 10;
         }
 
-        .quimera-word-container.visible {
+        .quimera-word-container.hyper-laser-burning {
             opacity: 1;
+            clip-path: inset(0 100% 0 0);
+            animation: hyperLaserRevealWord 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            position: relative;
+        }
+
+        @keyframes hyperLaserRevealWord {
+            0% {
+                clip-path: inset(0 100% 0 0);
+                transform: translateX(-50%) scale(0.85);
+                filter: brightness(4) contrast(200%) drop-shadow(0 0 30px rgba(56, 189, 248, 1));
+            }
+            50% {
+                transform: translateX(-50%) scale(1.03);
+                filter: brightness(2.5) contrast(150%) drop-shadow(0 0 15px rgba(200, 139, 50, 0.9));
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translateX(-50%) scale(1);
+                filter: brightness(1) contrast(100%) drop-shadow(0 0 0px transparent);
+            }
         }
 
         .quimera-letter {
@@ -331,7 +352,26 @@
             z-index: 10;
             -webkit-text-stroke: 0.75px #000000;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            transition: opacity 1s ease;
+        }
+
+        .subtitle-text.hyper-laser-burning {
+            opacity: 1;
+            clip-path: inset(0 100% 0 0);
+            animation: hyperLaserRevealSub 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            position: relative;
+        }
+
+        @keyframes hyperLaserRevealSub {
+            0% {
+                clip-path: inset(0 100% 0 0);
+                transform: translateX(-50%) scale(0.95);
+                filter: brightness(3) drop-shadow(0 0 20px rgba(56, 189, 248, 0.8));
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translateX(-50%) scale(1);
+                filter: brightness(1) drop-shadow(0 0 0px transparent);
+            }
         }
 
         .exploration-box {
@@ -499,7 +539,6 @@
             transform-origin: center center;
         }
 
-        /* EFECTO APAGADO DE TV ANTIGUA */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -507,7 +546,6 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -604,14 +642,14 @@
         </div>
     </nav>
 
-    <!-- Título principal con Hyper-Intense Laser (Estable y sin temblor) -->
+    <!-- Título principal con Hyper-Intense Laser -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
     </div>
 
-    <div class="subtitle-text" id="sub-text"></div>
+    <div class="subtitle-text" id="sub-text">Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.</div>
 
     <div class="exploration-box" id="exp-box">
         <p id="exp-title"></p>
@@ -637,16 +675,13 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
-            
             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
-        // Control de Reproducción de Música
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -667,7 +702,6 @@
             }
         });
 
-        // Control de Pantalla Completa
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -862,18 +896,25 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo del Hyper-Intense Laser estable para el título principal
+            // 1. Entrada láser para el título principal "¿QUÉ ES..?"
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
 
-            document.getElementById('quimera-word').classList.add('visible');
-            await new Promise(r => setTimeout(r, 400));
-            await playQuimeraAppearanceAsync();
+            // 2. Entrada láser para la palabra "QUIMERA" respetando su tiempo original
+            const quimeraWord = document.getElementById('quimera-word');
+            quimeraWord.classList.add('hyper-laser-burning');
+            await new Promise(r => setTimeout(r, 1200));
+
+            // Aseguramos el color base inicial de las letras de QUIMERA en dorado
+            const letters = document.querySelectorAll('.quimera-letter');
+            letters.forEach(l => l.style.color = '#c88b32');
             await new Promise(r => setTimeout(r, 400));
 
-            await typeWriter('sub-text', 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.', 35);
-            await new Promise(r => setTimeout(r, 400));
+            // 3. Entrada láser para la frase subtitulada
+            const subText = document.getElementById('sub-text');
+            subText.classList.add('hyper-laser-burning');
+            await new Promise(r => setTimeout(r, 1200));
 
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
@@ -909,6 +950,9 @@
                 }
                 typeFooterP();
             });
+
+            // Una vez terminada la secuencia de intro, activamos la interacción de las letras
+            activateCurrentLetter();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -931,36 +975,6 @@
         let selectedCount = 0;
         let activeBlinkInterval = null;
         let globalColorInterval = null;
-
-        function playQuimeraAppearanceAsync() {
-            return new Promise(resolve => {
-                let idx = 0;
-                function showNextRed() {
-                    if (idx < letters.length) {
-                        letters[idx].style.color = '#c88b32';
-                        idx++;
-                        setTimeout(showNextRed, 200);
-                    } else {
-                        setTimeout(showWhiteLetters, 250);
-                    }
-                }
-                function showWhiteLetters() {
-                    let jdx = 0;
-                    function showNextWhite() {
-                        if (jdx < letters.length) {
-                            letters[jdx].style.color = '#ffffff';
-                            jdx++;
-                            setTimeout(showNextWhite, 150);
-                        } else {
-                            activateCurrentLetter();
-                            resolve();
-                        }
-                    }
-                    showNextWhite();
-                }
-                showNextRed();
-            });
-        }
 
         function activateCurrentLetter() {
             if (currentLetterIndex >= letters.length) return;
