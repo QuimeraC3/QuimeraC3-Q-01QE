@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA Y SUBTÍTULO */
+        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA, SUBTÍTULO Y RECUADRO */
         .laser-burn-effect {
             opacity: 0;
             clip-path: inset(0 100% 0 0);
@@ -349,26 +349,16 @@
             transform: translateX(-50%);
             max-width: 1075px;
             width: 100%;
-            padding: 0.2rem 0.2rem;
+            padding: 0.4rem 0.8rem;
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
             font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            color: #cbd5e1;
-            opacity: 0;
-            transition: opacity 0.8s ease;
+            font-weight: 700;
+            color: #ffffff;
             text-align: center;
             z-index: 10;
-        }
-
-        .exploration-box.visible {
-            opacity: 1;
-        }
-
-        #exp-title {
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 0.2rem;
+            -webkit-text-stroke: 0.4px #000000;
         }
 
         footer {
@@ -631,10 +621,8 @@
     <!-- Subtítulo con Hyper-Intense Laser -->
     <div class="subtitle-text laser-burn-effect" id="sub-text"></div>
 
-    <div class="exploration-box" id="exp-box">
-        <p id="exp-title"></p>
-        <p id="exp-desc"></p>
-    </div>
+    <!-- Recuadro de exploración interactiva con Hyper-Intense Laser -->
+    <div class="exploration-box laser-burn-effect" id="exp-box"></div>
 
     <footer>
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
@@ -854,30 +842,14 @@
             subText.classList.remove('active-laser');
             subText.classList.add('revealed', 'hologram-mode');
 
-            document.getElementById('exp-box').classList.add('visible');
-            await new Promise(r => setTimeout(r, 600));
-
-            // Escritura del cuadro de exploración
-            const expTitleEl = document.getElementById('exp-title');
-            const exploreText = 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?';
-            expTitleEl.style.opacity = 1;
-            let expIdx = 0;
-            await new Promise(resolveExp => {
-                function typeExp() {
-                    if (expIdx < exploreText.length) {
-                        expTitleEl.innerHTML += exploreText.charAt(expIdx);
-                        expIdx++;
-                        setTimeout(typeExp, 25);
-                    } else {
-                        resolveExp();
-                    }
-                }
-                typeExp();
-            });
+            // 4. Entrada Láser para el Cuadro de Exploración Interactiva + Hologram Mode al finalizar
+            const expBox = document.getElementById('exp-box');
+            expBox.textContent = 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?';
+            expBox.classList.add('active-laser');
+            await new Promise(r => setTimeout(r, 1200));
+            expBox.classList.remove('active-laser');
+            expBox.classList.add('revealed', 'hologram-mode');
             await new Promise(r => setTimeout(r, 400));
-
-            // Activación del efecto holográfico en el recuadro de exploración al terminar su escritura
-            document.getElementById('exp-box').classList.add('hologram-mode');
 
             document.querySelector('footer').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
