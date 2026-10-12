@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Capa de fondo estática, nítida y completa */
+        /* Capa de fondo estática, nítida y completa[cite: 5] */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero */
+        /* Capa de luz reactiva exclusiva del puntero[cite: 5] */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix */
+        /* Canvas para Lluvia de Código Matrix[cite: 5] */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Clase de desvanecimiento a negro para elementos de la interfaz */
+        /* Clase de desvanecimiento a negro para elementos de la interfaz[cite: 5] */
         .fade-out-element {
             opacity: 0 !important;
             pointer-events: none !important;
@@ -110,7 +110,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar */
+        /* Navegación Top Bar[cite: 5] */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO DE LÁSER COMPÚSTICAMENTE ESTABLE PARA TÍTULOS Y TEXTOS */
+        /* EFECTO HYPER-LÁSER COMPARTIDO */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -288,6 +288,7 @@
             }
         }
 
+        /* Posición original respetada para QUIMERA */
         .quimera-word-container {
             position: absolute;
             top: 65vh;
@@ -309,11 +310,11 @@
         .quimera-word-container.hyper-laser-burning {
             opacity: 1;
             clip-path: inset(0 100% 0 0);
-            animation: hyperLaserRevealWord 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            position: relative;
+            animation: hyperLaserRevealSub 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            position: absolute;
         }
 
-        @keyframes hyperLaserRevealWord {
+        @keyframes hyperLaserRevealSub {
             0% {
                 clip-path: inset(0 100% 0 0);
                 transform: translateX(-50%) scale(0.85);
@@ -336,6 +337,7 @@
             transition: color 0.4s ease;
         }
 
+        /* Posición original respetada para el Subtítulo */
         .subtitle-text {
             position: absolute;
             top: calc(65vh + 5.5rem + 1.0rem);
@@ -358,20 +360,7 @@
             opacity: 1;
             clip-path: inset(0 100% 0 0);
             animation: hyperLaserRevealSub 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            position: relative;
-        }
-
-        @keyframes hyperLaserRevealSub {
-            0% {
-                clip-path: inset(0 100% 0 0);
-                transform: translateX(-50%) scale(0.95);
-                filter: brightness(3) drop-shadow(0 0 20px rgba(56, 189, 248, 0.8));
-            }
-            100% {
-                clip-path: inset(0 0 0 0);
-                transform: translateX(-50%) scale(1);
-                filter: brightness(1) drop-shadow(0 0 0px transparent);
-            }
+            position: absolute;
         }
 
         .exploration-box {
@@ -501,7 +490,7 @@
             }
         }
 
-        /* Recuadro Central Modal */
+        /* Recuadro Central Modal[cite: 5] */
         #modal-backdrop {
             position: fixed;
             top: 0;
@@ -539,6 +528,7 @@
             transform-origin: center center;
         }
 
+        /* EFECTO APAGADO DE TV ANTIGUA[cite: 5] */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -546,6 +536,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO[cite: 5] */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -616,22 +607,22 @@
 </head>
 <body>
 
-    <!-- Elemento de Audio -->
+    <!-- Elemento de Audio[cite: 5] -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa -->
+    <!-- Capa de fondo estática, nítida y completa[cite: 5] -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero -->
+    <!-- Capa de luz reactiva exclusiva del puntero[cite: 5] -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix -->
+    <!-- Canvas para la Lluvia Matrix[cite: 5] -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Capa de desvanecimiento inicial en blanco -->
+    <!-- Capa de desvanecimiento inicial en blanco[cite: 5] -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar -->
+    <!-- Navegación Top Bar[cite: 5] -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -649,7 +640,7 @@
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
     </div>
 
-    <div class="subtitle-text" id="sub-text">Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.</div>
+    <div class="subtitle-text" id="sub-text"></div>
 
     <div class="exploration-box" id="exp-box">
         <p id="exp-title"></p>
@@ -660,7 +651,7 @@
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal[cite: 5] -->
     <div id="modal-backdrop">
         <div class="modal-box" id="modal-content-box">
             <h2 id="modal-title"></h2>
@@ -675,13 +666,16 @@
             }
         });
 
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 5]
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
+            
             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
+        // Control de Reproducción de Música[cite: 5]
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -702,6 +696,7 @@
             }
         });
 
+        // Control de Pantalla Completa[cite: 5]
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -796,7 +791,7 @@
                 title: "C³ NEXUS.",
                 content: [
                     { type: 'p', text: "Dentro del ecosistema QUIMERA se desarrolla C³ Nexus, concebido como una infraestructura digital para conectar, organizar, desarrollar y transferir conocimiento." },
-                    { type: 'p', text: "A través de C³ Nexus podrán converger recursos educativos, publicaciones, series pedagógicas, guías, herramientas, bases de conocimiento y otros desarrollos digitales." },
+                    { type: 'A través de C³ Nexus podrán converger recursos educativos, publicaciones, series pedagógicas, guías, herramientas, bases de conocimiento y otros desarrollos digitales." },
                     { type: 'p', text: "De este modo:" },
                     { type: 'p', text: "QUIMERA constituye el ecosistema, mientras que C³ Nexus constituye una de sus principales infraestructuras digitales de conexión y transferencia del conocimiento." }
                 ]
@@ -814,58 +809,6 @@
                 ]
             }
         ];
-
-        function typeWriter(elementId, text, speed = 35) {
-            return new Promise(resolve => {
-                const el = document.getElementById(elementId);
-                el.innerHTML = '';
-                el.style.opacity = 1; 
-                let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        el.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
-
-        function typeWriterHTML(element, htmlString, speed = 20) {
-            return new Promise(resolve => {
-                element.innerHTML = '';
-                const tokens = htmlString.match(/(<\/?[^>]+(>|$)|[^<]+)/g) || [htmlString];
-                let tokenIdx = 0;
-                let charIdx = 0;
-                
-                function type() {
-                    if (tokenIdx < tokens.length) {
-                        let currentToken = tokens[tokenIdx];
-                        if (currentToken.startsWith('<')) {
-                            element.innerHTML += currentToken;
-                            tokenIdx++;
-                            setTimeout(type, speed);
-                        } else {
-                            if (charIdx < currentToken.length) {
-                                element.innerHTML += currentToken.charAt(charIdx);
-                                charIdx++;
-                                setTimeout(type, speed);
-                            } else {
-                                charIdx = 0;
-                                tokenIdx++;
-                                setTimeout(type, speed);
-                            }
-                        }
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
 
         async function runIntroSequence() {
             const whiteOverlay = document.getElementById('intro-overlay');
@@ -896,63 +839,41 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Entrada láser para el título principal "¿QUÉ ES..?"
+            // 1. Animación de entrada del título principal ¿QUÉ ES..?
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
 
-            // 2. Entrada láser para la palabra "QUIMERA" respetando su tiempo original
+            // 2. Animación de entrada de la palabra QUIMERA con el mismo efecto láser
             const quimeraWord = document.getElementById('quimera-word');
+            quimeraWord.classList.add('visible');
             quimeraWord.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
-
-            // Aseguramos el color base inicial de las letras de QUIMERA en dorado
-            const letters = document.querySelectorAll('.quimera-letter');
-            letters.forEach(l => l.style.color = '#c88b32');
+            await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Entrada láser para la frase subtitulada
+            // 3. Animación de entrada del subtítulo con el mismo efecto láser
             const subText = document.getElementById('sub-text');
+            subText.innerText = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
 
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
 
-            await typeWriter('exp-title', 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?', 25);
+            // Texto guía de exploración interactiva
+            const expTitle = document.getElementById('exp-title');
+            expTitle.innerText = 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?';
+            expTitle.style.opacity = '1';
             await new Promise(r => setTimeout(r, 400));
 
             document.querySelector('footer').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
 
-            await new Promise(resolveFooter => {
-                const footerPs = document.querySelectorAll('footer p');
-                let pIndex = 0;
-                function typeFooterP() {
-                    if (pIndex >= footerPs.length) {
-                        resolveFooter();
-                        return;
-                    }
-                    let p = footerPs[pIndex];
-                    let text = p.dataset.text.replace('2026', new Date().getFullYear());
-                    let i = 0;
-                    function typeChar() {
-                        if (i <= text.length) {
-                            p.innerHTML = text.substring(0, i);
-                            i++;
-                            setTimeout(typeChar, 18);
-                        } else {
-                            pIndex++;
-                            setTimeout(typeFooterP, 100);
-                        }
-                    }
-                    typeChar();
-                }
-                typeFooterP();
-            });
-
-            // Una vez terminada la secuencia de intro, activamos la interacción de las letras
-            activateCurrentLetter();
+            const footerPs = document.querySelectorAll('footer p');
+            if (footerPs.length > 0) {
+                footerPs[0].innerHTML = footerPs[0].dataset.text.replace('2026', new Date().getFullYear());
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -975,6 +896,36 @@
         let selectedCount = 0;
         let activeBlinkInterval = null;
         let globalColorInterval = null;
+
+        function playQuimeraAppearanceAsync() {
+            return new Promise(resolve => {
+                let idx = 0;
+                function showNextRed() {
+                    if (idx < letters.length) {
+                        letters[idx].style.color = '#c88b32';
+                        idx++;
+                        setTimeout(showNextRed, 200);
+                    } else {
+                        setTimeout(showWhiteLetters, 250);
+                    }
+                }
+                function showWhiteLetters() {
+                    let jdx = 0;
+                    function showNextWhite() {
+                        if (jdx < letters.length) {
+                            letters[jdx].style.color = '#ffffff';
+                            jdx++;
+                            setTimeout(showNextWhite, 150);
+                        } else {
+                            activateCurrentLetter();
+                            resolve();
+                        }
+                    }
+                    showNextWhite();
+                }
+                showNextRed();
+            });
+        }
 
         function activateCurrentLetter() {
             if (currentLetterIndex >= letters.length) return;
