@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Imagen de fondo completamente estática, nítida y visible en su totalidad[cite: 7] */
+        /* Capa de fondo estática, nítida y completa */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva para el movimiento del puntero[cite: 7] */
+        /* Capa de luz reactiva exclusiva del puntero */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO HOLOGRAPHIC LASER BURN PARA EL TÍTULO PRINCIPAL */
+        /* EFECTO GRAVITATIONAL LENS WARP PARA EL TÍTULO PRINCIPAL */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -201,49 +201,25 @@
             z-index: 10;
         }
 
-        .page-title.laser-burning {
-            opacity: 1;
-            clip-path: inset(0 100% 0 0);
-            animation: laserBurnReveal 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            position: relative;
+        .page-title.gravitational-warp {
+            animation: gravitationalWarpAnim 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* Barril de láser brillante recorriendo el texto */
-        .page-title.laser-burning::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            bottom: -10px;
-            left: 0;
-            width: 6px;
-            background: linear-gradient(180deg, transparent, #38bdf8, #fffbeb, #38bdf8, transparent);
-            box-shadow: 0 0 15px #38bdf8, 0 0 30px #0ea5e9;
-            animation: laserBarMove 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            z-index: 12;
-        }
-
-        @keyframes laserBurnReveal {
+        @keyframes gravitationalWarpAnim {
             0% {
-                clip-path: inset(0 100% 0 0);
-                filter: brightness(2.5) drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
-            }
-            100% {
-                clip-path: inset(0 0 0 0);
-                filter: brightness(1) drop-shadow(0 0 0px transparent);
-            }
-        }
-
-        @keyframes laserBarMove {
-            0% {
-                left: 0%;
-                opacity: 1;
-            }
-            95% {
-                opacity: 1;
-            }
-            100% {
-                left: 100%;
                 opacity: 0;
+                transform: translateX(-50%) scale(3.5);
+                filter: blur(20px);
+            }
+            70% {
+                opacity: 1;
+                transform: translateX(-50%) scale(0.92);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                filter: blur(0px);
             }
         }
 
@@ -542,10 +518,10 @@
     <!-- Elemento de Audio -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa[cite: 7] -->
+    <!-- Capa de fondo estática, nítida y completa -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero[cite: 7] -->
+    <!-- Capa de luz reactiva exclusiva del puntero -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
     <!-- Canvas para la Lluvia Matrix -->
@@ -565,7 +541,7 @@
         </div>
     </nav>
 
-    <!-- Título principal con Holographic Laser Burn -->
+    <!-- Título principal con Gravitational Lens Warp -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
@@ -598,7 +574,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 7]
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
@@ -823,10 +799,10 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo del Holographic Laser Burn para el título principal
+            // Disparo del Gravitational Lens Warp para el título principal
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('laser-burning');
-            await new Promise(r => setTimeout(r, 1200));
+            mainTitle.classList.add('gravitational-warp');
+            await new Promise(r => setTimeout(r, 1000));
 
             document.getElementById('quimera-word').classList.add('visible');
             await new Promise(r => setTimeout(r, 400));
