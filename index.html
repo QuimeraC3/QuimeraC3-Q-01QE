@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Capa de fondo estática, nítida y completa */
+        /* Capa de fondo estática, nítida y completa[cite: 5] */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero */
+        /* Capa de luz reactiva exclusiva del puntero[cite: 5] */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix */
+        /* Canvas para Lluvia de Código Matrix[cite: 5] */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Clase de desvanecimiento a negro para elementos de la interfaz */
+        /* Clase de desvanecimiento a negro para elementos de la interfaz[cite: 5] */
         .fade-out-element {
             opacity: 0 !important;
             pointer-events: none !important;
@@ -110,7 +110,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar */
+        /* Navegación Top Bar[cite: 5] */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -180,14 +180,12 @@
             color: #ffffff;
         }
 
-        /* Título principal estático y nítido (sin láser) */
-        .page-title {
+        /* EFECTO HYPER-INTENSE LASER COMPARTIDO PARA TÍTULO PRINCIPAL Y QUIMERA */
+        .page-title, .quimera-word-container {
             position: absolute;
-            top: 07vh;
-            left: 51%;
+            left: 50%;
             transform: translateX(-50%);
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.0rem, 09vw, 5rem);
             font-weight: 700;
             letter-spacing: 0em;
             text-transform: uppercase;
@@ -198,41 +196,34 @@
             text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.8s ease;
             z-index: 10;
         }
 
-        .page-title.visible {
-            opacity: 1;
-        }
-
-        /* Contenedor de la palabra QUIMERA con el efecto Hyper-Laser Burn */
-        .quimera-word-container {
-            position: absolute;
-            top: 65vh;
-            left: 50%;
+        .page-title {
+            top: 07vh;
+            font-size: clamp(2.0rem, 09vw, 5rem);
+            left: 51%;
             transform: translateX(-50%);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.5rem, 10vw, 6rem);
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            line-height: 1.1;
-            -webkit-text-stroke: 1.5px #000000;
-            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-            cursor: default;
-            opacity: 0;
-            white-space: nowrap;
-            z-index: 10;
         }
 
+        .quimera-word-container {
+            top: 65vh;
+            letter-spacing: 0.25em;
+            -webkit-text-stroke: 1.5px #000000;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+        }
+
+        /* Aplicación del efecto Láser */
+        .page-title.hyper-laser-burning,
         .quimera-word-container.hyper-laser-burning {
             opacity: 1;
             clip-path: inset(0 100% 0 0);
             animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            position: absolute;
+            position: relative;
         }
 
-        /* Núcleo de plasma hiper-brillante con doble haz frontal para QUIMERA */
+        /* Núcleo de plasma hiper-brillante con doble haz frontal */
+        .page-title.hyper-laser-burning::before,
         .quimera-word-container.hyper-laser-burning::before {
             content: '';
             position: absolute;
@@ -247,7 +238,8 @@
             filter: blur(0.5px);
         }
 
-        /* Explosión de chispas y destello envolvente para QUIMERA */
+        /* Explosión de chispas y destello de alta energía envolvente */
+        .page-title.hyper-laser-burning::after,
         .quimera-word-container.hyper-laser-burning::after {
             content: '';
             position: absolute;
@@ -258,61 +250,6 @@
             height: 120%;
             pointer-events: none;
             background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(56,189,248,0.6) 30%, rgba(200,139,50,0.3) 60%, transparent 100%);
-            mix-blend-mode: color-dodge;
-            animation: hyperLaserSparksWave 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            z-index: 12;
-        }
-
-        /* Subtítulo con el efecto Hyper-Laser Burn (respetando posición exacta) */
-        .subtitle-text {
-            position: absolute;
-            top: calc(65vh + 5.5rem + 1.0rem);
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            font-weight: 700;
-            line-height: 1.5;
-            max-width: 900px;
-            width: 90%;
-            color: #ffffff;
-            text-align: center;
-            opacity: 0;
-            z-index: 10;
-            -webkit-text-stroke: 0.75px #000000;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        .subtitle-text.hyper-laser-burning {
-            opacity: 1;
-            clip-path: inset(0 100% 0 0);
-            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            position: absolute;
-        }
-
-        .subtitle-text.hyper-laser-burning::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            bottom: -20px;
-            left: 0;
-            width: 12px;
-            background: radial-gradient(circle, #ffffff 0%, #38bdf8 40%, #c88b32 80%, transparent 100%);
-            box-shadow: 0 0 25px #38bdf8, 0 0 50px #fffbeb, inset 0 0 10px #ffffff;
-            animation: hyperLaserBarMove 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
-            z-index: 15;
-            filter: blur(0.5px);
-        }
-
-        .subtitle-text.hyper-laser-burning::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 110%;
-            pointer-events: none;
-            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(56,189,248,0.6) 30%, transparent 60%);
             mix-blend-mode: color-dodge;
             animation: hyperLaserSparksWave 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
             z-index: 12;
@@ -369,6 +306,85 @@
             display: inline-block;
             color: #ffffff;
             transition: color 0.4s ease;
+        }
+
+        /* EFECTO LÁSER PARA EL SUBTÍTULO (RESPETANDO SU POSICIÓN ORIGINAL) */
+        .subtitle-text {
+            position: absolute;
+            top: calc(65vh + 5.5rem + 1.0rem);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 700;
+            line-height: 1.5;
+            max-width: 900px;
+            width: 90%;
+            color: #ffffff;
+            text-align: center;
+            opacity: 0;
+            z-index: 10;
+            -webkit-text-stroke: 0.75px #000000;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .subtitle-text.hyper-laser-burning {
+            opacity: 1;
+            clip-path: inset(0 100% 0 0);
+            animation: subLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            position: relative;
+        }
+
+        .subtitle-text.hyper-laser-burning::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            bottom: -20px;
+            left: 0;
+            width: 12px;
+            background: radial-gradient(circle, #ffffff 0%, #38bdf8 40%, #c88b32 80%, transparent 100%);
+            box-shadow: 0 0 25px #38bdf8, 0 0 50px #fffbeb, inset 0 0 10px #ffffff;
+            animation: subLaserBarMove 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            z-index: 15;
+            filter: blur(0.5px);
+        }
+
+        .subtitle-text.hyper-laser-burning::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 110%;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(56,189,248,0.5) 30%, transparent 100%);
+            mix-blend-mode: color-dodge;
+            animation: subLaserSparksWave 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
+            z-index: 12;
+        }
+
+        @keyframes subLaserReveal {
+            0% {
+                clip-path: inset(0 100% 0 0);
+                transform: translateX(-50%) scale(0.95);
+                filter: brightness(3) contrast(150%) drop-shadow(0 0 20px rgba(56, 189, 248, 0.8));
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translateX(-50%) scale(1);
+                filter: brightness(1) contrast(100%) drop-shadow(0 0 0px transparent);
+            }
+        }
+
+        @keyframes subLaserBarMove {
+            0% { left: 0%; opacity: 1; transform: scaleY(1.5); }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; transform: scaleY(0.5); }
+        }
+
+        @keyframes subLaserSparksWave {
+            0% { opacity: 1; clip-path: inset(0 100% 0 0); }
+            100% { opacity: 0; clip-path: inset(0 0 0 0); }
         }
 
         .exploration-box {
@@ -498,7 +514,7 @@
             }
         }
 
-        /* Recuadro Central Modal */
+        /* Recuadro Central Modal[cite: 5] */
         #modal-backdrop {
             position: fixed;
             top: 0;
@@ -536,7 +552,7 @@
             transform-origin: center center;
         }
 
-        /* EFECTO APAGADO DE TV ANTIGUA */
+        /* EFECTO APAGADO DE TV ANTIGUA[cite: 5] */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -544,7 +560,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO[cite: 5] */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -615,22 +631,22 @@
 </head>
 <body>
 
-    <!-- Elemento de Audio -->
+    <!-- Elemento de Audio[cite: 5] -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa -->
+    <!-- Capa de fondo estática, nítida y completa[cite: 5] -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero -->
+    <!-- Capa de luz reactiva exclusiva del puntero[cite: 5] -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix -->
+    <!-- Canvas para la Lluvia Matrix[cite: 5] -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Capa de desvanecimiento inicial en blanco -->
+    <!-- Capa de desvanecimiento inicial en blanco[cite: 5] -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar -->
+    <!-- Navegación Top Bar[cite: 5] -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -641,15 +657,14 @@
         </div>
     </nav>
 
-    <!-- Título principal ¿QUÉ ES..? (Entrada simple y elegante) -->
+    <!-- Título principal con Hyper-Intense Laser -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
-    <!-- Contenedor QUIMERA (Hereda el efecto Hyper-Laser Burn) -->
     <div class="quimera-word-container" id="quimera-word">
         <span class="quimera-letter" data-index="0">Q</span><span class="quimera-letter" data-index="1">U</span><span class="quimera-letter" data-index="2">I</span><span class="quimera-letter" data-index="3">M</span><span class="quimera-letter" data-index="4">E</span><span class="quimera-letter" data-index="5">R</span><span class="quimera-letter" data-index="6">A</span>
     </div>
 
-    <!-- Subtítulo (Hereda el efecto Hyper-Laser Burn respetando su posición) -->
+    <!-- Subtítulo con Hyper-Intense Laser sincronizado -->
     <div class="subtitle-text" id="sub-text">Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.</div>
 
     <div class="exploration-box" id="exp-box">
@@ -661,7 +676,7 @@
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal[cite: 5] -->
     <div id="modal-backdrop">
         <div class="modal-box" id="modal-content-box">
             <h2 id="modal-title"></h2>
@@ -676,7 +691,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 5]
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
@@ -685,7 +700,7 @@
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
-        // Control de Reproducción de Música
+        // Control de Reproducción de Música[cite: 5]
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -706,7 +721,7 @@
             }
         });
 
-        // Control de Pantalla Completa
+        // Control de Pantalla Completa[cite: 5]
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -820,6 +835,25 @@
             }
         ];
 
+        function typeWriter(elementId, text, speed = 35) {
+            return new Promise(resolve => {
+                const el = document.getElementById(elementId);
+                el.innerHTML = '';
+                el.style.opacity = 1; 
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        el.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        resolve();
+                    }
+                }
+                type();
+            });
+        }
+
         function typeWriterHTML(element, htmlString, speed = 20) {
             return new Promise(resolve => {
                 element.innerHTML = '';
@@ -882,20 +916,21 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Aparición limpia y directa del título principal ¿QUÉ ES..?
+            // 1. Disparo del Hyper-Intense Laser para el título principal "¿QUÉ ES..?"
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('visible');
-            await new Promise(r => setTimeout(r, 800));
+            mainTitle.classList.add('hyper-laser-burning');
+            await new Promise(r => setTimeout(r, 1200));
 
-            // 2. Disparo de la animación Hyper-Laser Burn para la palabra QUIMERA
+            // 2. Disparo del Hyper-Intense Laser para la palabra "QUIMERA" respetando el tiempo y orden exactos
             const quimeraWord = document.getElementById('quimera-word');
+            quimeraWord.classList.add('visible');
             quimeraWord.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
 
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Disparo de la animación Hyper-Laser Burn para el subtítulo exactamente en su posición
+            // 3. Disparo del Hyper-Intense Laser para el subtítulo manteniendo su posición original
             const subText = document.getElementById('sub-text');
             subText.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
@@ -903,9 +938,7 @@
             document.getElementById('exp-box').classList.add('visible');
             await new Promise(r => setTimeout(r, 600));
 
-            const expTitle = document.getElementById('exp-title');
-            expTitle.style.opacity = 1;
-            await typeWriterHTML(expTitle, 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?', 25);
+            await typeWriter('exp-title', 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?', 25);
             await new Promise(r => setTimeout(r, 400));
 
             document.querySelector('footer').classList.add('visible');
