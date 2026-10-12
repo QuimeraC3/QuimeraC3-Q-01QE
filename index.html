@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Capa de fondo estática, nítida y completa[cite: 5] */
+        /* Capa de fondo estática, nítida y completa */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero[cite: 5] */
+        /* Capa de luz reactiva exclusiva del puntero */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix[cite: 5] */
+        /* Canvas para Lluvia de Código Matrix */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Clase de desvanecimiento a negro para elementos de la interfaz[cite: 5] */
+        /* Clase de desvanecimiento a negro para elementos de la interfaz */
         .fade-out-element {
             opacity: 0 !important;
             pointer-events: none !important;
@@ -110,7 +110,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar[cite: 5] */
+        /* Navegación Top Bar */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO HYPER-INTENSE ULTRA-LASER CON IMPACTO Y TEMBLOR */
+        /* EFECTO ULTRA-LÁSER CON PLASMA Y DOBLE HAZ (ESTABLE Y FIRME) */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -204,7 +204,7 @@
         .page-title.hyper-laser-burning {
             opacity: 1;
             clip-path: inset(0 100% 0 0);
-            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards, screenShake 0.3s ease-in-out 3;
+            animation: hyperLaserReveal 1.2s cubic-bezier(0.15, 1, 0.2, 1) forwards;
             position: relative;
         }
 
@@ -284,15 +284,6 @@
                 opacity: 0;
                 clip-path: inset(0 0 0 0);
             }
-        }
-
-        @keyframes screenShake {
-            0% { margin-left: 0px; }
-            20% { margin-left: -3px; margin-top: 2px; }
-            40% { margin-left: 3px; margin-top: -2px; }
-            60% { margin-left: -2px; margin-top: -1px; }
-            80% { margin-left: 2px; margin-top: 1px; }
-            100% { margin-left: 0px; margin-top: 0px; }
         }
 
         .quimera-word-container {
@@ -470,7 +461,7 @@
             }
         }
 
-        /* Recuadro Central Modal[cite: 5] */
+        /* Recuadro Central Modal */
         #modal-backdrop {
             position: fixed;
             top: 0;
@@ -508,7 +499,7 @@
             transform-origin: center center;
         }
 
-        /* EFECTO APAGADO DE TV ANTIGUA[cite: 5] */
+        /* EFECTO APAGADO DE TV ANTIGUA */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -516,7 +507,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO[cite: 5] */
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -587,22 +578,22 @@
 </head>
 <body>
 
-    <!-- Elemento de Audio[cite: 5] -->
+    <!-- Elemento de Audio -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa[cite: 5] -->
+    <!-- Capa de fondo estática, nítida y completa -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero[cite: 5] -->
+    <!-- Capa de luz reactiva exclusiva del puntero -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix[cite: 5] -->
+    <!-- Canvas para la Lluvia Matrix -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Capa de desvanecimiento inicial en blanco[cite: 5] -->
+    <!-- Capa de desvanecimiento inicial en blanco -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar[cite: 5] -->
+    <!-- Navegación Top Bar -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -613,7 +604,7 @@
         </div>
     </nav>
 
-    <!-- Título principal con Hyper-Intense Laser y Temblor Cinético -->
+    <!-- Título principal con Hyper-Intense Laser (Estable y sin temblor) -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
@@ -631,7 +622,7 @@
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
     </footer>
 
-    <!-- Modal[cite: 5] -->
+    <!-- Modal -->
     <div id="modal-backdrop">
         <div class="modal-box" id="modal-content-box">
             <h2 id="modal-title"></h2>
@@ -646,7 +637,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 5]
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
@@ -655,7 +646,7 @@
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
-        // Control de Reproducción de Música[cite: 5]
+        // Control de Reproducción de Música
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -676,7 +667,7 @@
             }
         });
 
-        // Control de Pantalla Completa[cite: 5]
+        // Control de Pantalla Completa
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -715,7 +706,7 @@
             {
                 title: "MÁS QUE INFORMACIÓN: CONOCIMIENTO CON PROPÓSITO.",
                 content: [
-                    { type: 'p', text: "QUIMERA não busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
+                    { type: 'p', text: "QUIMERA no busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
                     { type: 'p', text: "Para ello, cada proyecto puede recorrer un proceso continuo:" },
                     { type: 'flow', text: "PREGUNTA → INVESTIGACIÓN → ANÁLISIS → CONOCIMIENTO → DESARROLLO → FORMACIÓN → APLICACIÓN → EVALUACIÓN" },
                     { type: 'p', text: "De esta manera, la investigación puede convertirse en formación; la formación, en práctica; y la práctica, nuevamente, en nuevas preguntas que impulsen el conocimiento." }
@@ -871,7 +862,7 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo del Hyper-Intense Laser con temblor para el título principal
+            // Disparo del Hyper-Intense Laser estable para el título principal
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('hyper-laser-burning');
             await new Promise(r => setTimeout(r, 1200));
@@ -1000,7 +991,6 @@
                     clearInterval(blinkFive);
                     targetLetter.style.color = '#ffffff';
 
-                    // Si se selecciona la última letra 'A' (index 6)[cite: 5]
                     if (index === 6) {
                         triggerMatrixAndFadeElements();
                     }
@@ -1010,7 +1000,6 @@
             }, 100);
         }
 
-        // Función para desvanecer elementos en negro e iniciar la lluvia Matrix[cite: 5]
         function triggerMatrixAndFadeElements() {
             const bgImg = document.getElementById('bg-image');
             if (bgImg) bgImg.classList.remove('visible');
@@ -1035,7 +1024,6 @@
             if (canvas) canvas.style.opacity = '1';
         }
 
-        // Generador del Código Matrix Dorado[cite: 5]
         let matrixInterval = null;
         function startMatrixRain() {
             const canvas = document.getElementById('matrix-canvas');
@@ -1064,9 +1052,9 @@
                     const text = chars.charAt(Math.floor(Math.random() * chars.length));
 
                     if (Math.random() > 0.88) {
-                        ctx.fillStyle = '#fffbeb'; // Brillo inicial de la gota[cite: 5]
+                        ctx.fillStyle = '#fffbeb';
                     } else {
-                        ctx.fillStyle = '#c88b32'; // Dorado / cobre principal[cite: 5]
+                        ctx.fillStyle = '#c88b32';
                     }
 
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -1147,7 +1135,6 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                // Animación de apagado de TV antigua (crt exit)[cite: 5]
                 modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
