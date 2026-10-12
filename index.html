@@ -36,7 +36,7 @@
             filter: blur(12px);
         }
 
-        /* Capa de fondo estática, nítida y completa */
+        /* Capa de fondo estática, nítida y completa[cite: 5] */
         .bg-image {
             position: fixed;
             top: 0;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero */
+        /* Capa de luz reactiva exclusiva del puntero[cite: 5] */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix */
+        /* Canvas para Lluvia de Código Matrix[cite: 5] */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -86,7 +86,7 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Clase de desvanecimiento a negro para elementos de la interfaz */
+        /* Clase de desvanecimiento a negro para elementos de la interfaz[cite: 5] */
         .fade-out-element {
             opacity: 0 !important;
             pointer-events: none !important;
@@ -110,7 +110,7 @@
             opacity: 0;
         }
 
-        /* Navegación Top Bar */
+        /* Navegación Top Bar[cite: 5] */
         .top-bar {
             background-color: rgba(11, 19, 41, 0.0);
             padding: 0.85rem 2rem;
@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO LIQUID METAL SURFACE PARA EL TÍTULO PRINCIPAL */
+        /* EFECTO ULTRA-LÁSER CON CHISPAS DE PLASMA Y DOBLE HAZ PARA EL TÍTULO PRINCIPAL */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -201,25 +201,82 @@
             z-index: 10;
         }
 
-        .page-title.liquid-surface {
-            animation: liquidSurfaceAnim 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        .page-title.ultra-laser-burning {
+            opacity: 1;
+            clip-path: inset(0 100% 0 0);
+            animation: ultraLaserReveal 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            position: relative;
         }
 
-        @keyframes liquidSurfaceAnim {
+        /* Barra de plasma principal y haz secundario */
+        .page-title.ultra-laser-burning::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            bottom: -20px;
+            left: 0;
+            width: 12px;
+            background: radial-gradient(circle, #fffbeb 0%, #38bdf8 50%, transparent 100%);
+            box-shadow: 0 0 25px #38bdf8, 0 0 50px #c88b32, inset 0 0 10px #ffffff;
+            animation: ultraLaserBarMove 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 15;
+            filter: blur(1px);
+        }
+
+        /* Estela de chispas de plasma incandescentes */
+        .page-title.ultra-laser-burning::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 0% 50%, rgba(255, 251, 235, 0.9) 0%, rgba(56, 189, 248, 0.4) 25%, transparent 60%);
+            mix-blend-mode: screen;
+            animation: ultraLaserSparks 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 12;
+        }
+
+        @keyframes ultraLaserReveal {
             0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(40px) scaleY(0.2);
-                filter: blur(15px) saturate(300%);
-            }
-            50% {
-                opacity: 0.7;
-                transform: translateX(-50%) translateY(-10px) scaleY(1.15);
-                filter: blur(6px) saturate(200%);
+                clip-path: inset(0 100% 0 0);
+                filter: brightness(3) drop-shadow(0 0 20px rgba(56, 189, 248, 0.9)) drop-shadow(0 0 10px rgba(200, 139, 50, 0.8));
             }
             100% {
+                clip-path: inset(0 0 0 0);
+                filter: brightness(1) drop-shadow(0 0 0px transparent);
+            }
+        }
+
+        @keyframes ultraLaserBarMove {
+            0% {
+                left: 0%;
                 opacity: 1;
-                transform: translateX(-50%) translateY(0) scaleY(1);
-                filter: blur(0px) saturate(100%);
+                transform: scaleY(1.2);
+            }
+            50% {
+                transform: scaleY(1.6) rotate(2deg);
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+                transform: scaleY(0.8);
+            }
+        }
+
+        @keyframes ultraLaserSparks {
+            0% {
+                opacity: 1;
+                clip-path: inset(0 100% 0 0);
+            }
+            100% {
+                opacity: 0;
+                clip-path: inset(0 0 0 0);
             }
         }
 
@@ -398,7 +455,7 @@
             }
         }
 
-        /* Recuadro Central Modal */
+        /* Recuadro Central Modal[cite: 5] */
         #modal-backdrop {
             position: fixed;
             top: 0;
@@ -436,7 +493,7 @@
             transform-origin: center center;
         }
 
-        /* EFECTO APAGADO DE TV ANTIGUA */
+        /* EFECTO APAGADO DE TV ANTIGUA[cite: 5] */
         @keyframes tvShutdown {
             0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
             40% { transform: scale(1, 0.005); filter: brightness(3); opacity: 1; }
@@ -444,7 +501,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO[cite: 5] */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -515,22 +572,22 @@
 </head>
 <body>
 
-    <!-- Elemento de Audio -->
+    <!-- Elemento de Audio[cite: 5] -->
     <audio id="bg-music" src="Quimera_Milonga_(Lado_B).mp3" loop preload="auto"></audio>
 
-    <!-- Capa de fondo estática, nítida y completa -->
+    <!-- Capa de fondo estática, nítida y completa[cite: 5] -->
     <div class="bg-image" id="bg-image"></div>
     
-    <!-- Capa de luz reactiva exclusiva del puntero -->
+    <!-- Capa de luz reactiva exclusiva del puntero[cite: 5] -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix -->
+    <!-- Canvas para la Lluvia Matrix[cite: 5] -->
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Capa de desvanecimiento inicial en blanco -->
+    <!-- Capa de desvanecimiento inicial en blanco[cite: 5] -->
     <div id="intro-overlay"></div>
 
-    <!-- Navegación Top Bar -->
+    <!-- Navegación Top Bar[cite: 5] -->
     <nav class="top-bar">
         <div class="top-bar-container">
             <a href="https://quimerac3.github.io/" class="brand-logo" data-text="QUIMERA - Indice General"></a>
@@ -541,7 +598,7 @@
         </div>
     </nav>
 
-    <!-- Título principal con Liquid Metal Surface -->
+    <!-- Título principal con Ultra-Laser Burn y chispas de plasma -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
@@ -559,7 +616,7 @@
         <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal[cite: 5] -->
     <div id="modal-backdrop">
         <div class="modal-box" id="modal-content-box">
             <h2 id="modal-title"></h2>
@@ -574,7 +631,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)
+        // CONTROL DE MOVIMIENTO DEL CURSOR (EXCLUSIVO PARA LA LUZ REACTIVA)[cite: 5]
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
@@ -583,7 +640,7 @@
             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         });
 
-        // Control de Reproducción de Música
+        // Control de Reproducción de Música[cite: 5]
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
@@ -604,7 +661,7 @@
             }
         });
 
-        // Control de Pantalla Completa
+        // Control de Pantalla Completa[cite: 5]
         const fullscreenToggle = document.getElementById('fullscreen-toggle');
 
         fullscreenToggle.addEventListener('click', (e) => {
@@ -707,7 +764,7 @@
             {
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
-                    { type: 'p', text: "QUIMERA não pretende ser una estructura estática." },
+                    { type: 'p', text: "QUIMERA no pretende ser una estructura estática." },
                     { type: 'p', text: "Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve. Lo que permanece es su orientación:" },
                     { type: 'p', text: "Comprender antes de intervenir." },
                     { type: 'p', text: "Fundamentar antes de afirmar." },
@@ -799,10 +856,10 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo del Liquid Metal Surface para el título principal
+            // Disparo del Ultra-Laser Burn con chispas de plasma para el título principal
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('liquid-surface');
-            await new Promise(r => setTimeout(r, 1400));
+            mainTitle.classList.add('ultra-laser-burning');
+            await new Promise(r => setTimeout(r, 1300));
 
             document.getElementById('quimera-word').classList.add('visible');
             await new Promise(r => setTimeout(r, 400));
@@ -928,7 +985,7 @@
                     clearInterval(blinkFive);
                     targetLetter.style.color = '#ffffff';
 
-                    // Si se selecciona la última letra 'A' (index 6)
+                    // Si se selecciona la última letra 'A' (index 6)[cite: 5]
                     if (index === 6) {
                         triggerMatrixAndFadeElements();
                     }
@@ -938,7 +995,7 @@
             }, 100);
         }
 
-        // Función para desvanecer elementos en negro e iniciar la lluvia Matrix
+        // Función para desvanecer elementos en negro e iniciar la lluvia Matrix[cite: 5]
         function triggerMatrixAndFadeElements() {
             const bgImg = document.getElementById('bg-image');
             if (bgImg) bgImg.classList.remove('visible');
@@ -963,7 +1020,7 @@
             if (canvas) canvas.style.opacity = '1';
         }
 
-        // Generador del Código Matrix Dorado
+        // Generador del Código Matrix Dorado[cite: 5]
         let matrixInterval = null;
         function startMatrixRain() {
             const canvas = document.getElementById('matrix-canvas');
@@ -992,9 +1049,9 @@
                     const text = chars.charAt(Math.floor(Math.random() * chars.length));
 
                     if (Math.random() > 0.88) {
-                        ctx.fillStyle = '#fffbeb'; // Brillo inicial de la gota
+                        ctx.fillStyle = '#fffbeb'; // Brillo inicial de la gota[cite: 5]
                     } else {
-                        ctx.fillStyle = '#c88b32'; // Dorado / cobre principal
+                        ctx.fillStyle = '#c88b32'; // Dorado / cobre principal[cite: 5]
                     }
 
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -1075,7 +1132,7 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                // Animación de apagado de TV antigua (crt exit)
+                // Animación de apagado de TV antigua (crt exit)[cite: 5]
                 modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
