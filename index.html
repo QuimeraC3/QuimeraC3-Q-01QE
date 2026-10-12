@@ -269,9 +269,9 @@
             }
         }
 
-        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER SIN ALTERAR POSICIONES */
+        /* EFECTO HOLOGRAM-MODE SÓLO CON NEÓN ESTABLE (SIN PARPADEO) */
         .hologram-mode {
-            animation: hologramNeonGlow 3s ease-in-out infinite alternate, hologramFlicker 4s steps(1) infinite;
+            animation: hologramNeonGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes hologramNeonGlow {
@@ -284,19 +284,6 @@
             100% {
                 text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 20px rgba(15, 118, 110, 0.5), 3px 3px 8px rgba(0, 0, 0, 0.8);
             }
-        }
-
-        @keyframes hologramFlicker {
-            0%, 100% { opacity: 1; }
-            3% { opacity: 0.82; }
-            6% { opacity: 1; }
-            7% { opacity: 0.5; }
-            8% { opacity: 1; }
-            45% { opacity: 0.95; }
-            46% { opacity: 0.7; }
-            47% { opacity: 1; }
-            82% { opacity: 0.88; }
-            84% { opacity: 1; }
         }
 
         .page-title {
@@ -841,14 +828,14 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? + Hologram Mode/Flicker al finalizar
+            // 1. Entrada Láser para el Título Principal ¿QUÉ ES..? + Hologram Mode al finalizar
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
             mainTitle.classList.remove('active-laser');
             mainTitle.classList.add('revealed', 'hologram-mode');
 
-            // 2. Entrada Láser para la palabra QUIMERA + Hologram Mode/Flicker al finalizar
+            // 2. Entrada Láser para la palabra QUIMERA + Hologram Mode al finalizar
             const quimeraWord = document.getElementById('quimera-word');
             quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
@@ -859,7 +846,7 @@
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 3. Entrada Láser para el Subtítulo + Hologram Mode/Flicker al finalizar
+            // 3. Entrada Láser para el Subtítulo + Hologram Mode al finalizar
             const subText = document.getElementById('sub-text');
             subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('active-laser');
