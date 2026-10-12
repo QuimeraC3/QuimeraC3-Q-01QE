@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA, SUBTÍTULO Y RECUADRO */
+        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA, SUBTÍTULO, RECUADRO Y FOOTER */
         .laser-burn-effect {
             opacity: 0;
             clip-path: inset(0 100% 0 0);
@@ -373,13 +373,7 @@
             text-align: center;
             color: #ffffff;
             font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-            opacity: 0;
-            transition: opacity 500ms ease;
             z-index: 100;
-        }
-
-        footer.visible {
-            opacity: 1;
         }
 
         footer p {
@@ -624,8 +618,9 @@
     <!-- Recuadro de exploración interactiva con Hyper-Intense Laser -->
     <div class="exploration-box laser-burn-effect" id="exp-box"></div>
 
-    <footer>
-        <p data-text="&bull; &copy; 2026 Instituto Quimera. &bull; Centro de Investigación, Docencia, Servicio y Difusión. &bull; Dr.C. Cesar Cerezo Camacho. &bull; Todos los derechos reservados. &bull;"></p>
+    <!-- Footer con Hyper-Intense Laser -->
+    <footer class="laser-burn-effect" id="main-footer">
+        <p id="footer-text"></p>
     </footer>
 
     <!-- Modal -->
@@ -851,34 +846,14 @@
             expBox.classList.add('revealed', 'hologram-mode');
             await new Promise(r => setTimeout(r, 400));
 
-            document.querySelector('footer').classList.add('visible');
-            await new Promise(r => setTimeout(r, 600));
-
-            await new Promise(resolveFooter => {
-                const footerPs = document.querySelectorAll('footer p');
-                let pIndex = 0;
-                function typeFooterP() {
-                    if (pIndex >= footerPs.length) {
-                        resolveFooter();
-                        return;
-                    }
-                    let p = footerPs[pIndex];
-                    let text = p.dataset.text.replace('2026', new Date().getFullYear());
-                    let i = 0;
-                    function typeChar() {
-                        if (i <= text.length) {
-                            p.innerHTML = text.substring(0, i);
-                            i++;
-                            setTimeout(typeChar, 18);
-                        } else {
-                            pIndex++;
-                            setTimeout(typeFooterP, 100);
-                        }
-                    }
-                    typeChar();
-                }
-                typeFooterP();
-            });
+            // 5. Entrada Láser para el Footer + Hologram Mode al finalizar
+            const mainFooter = document.getElementById('main-footer');
+            const footerText = document.getElementById('footer-text');
+            footerText.textContent = `• © ${new Date().getFullYear()} Instituto Quimera. • Centro de Investigación, Docencia, Servicio y Difusión. • Dr.C. Cesar Cerezo Camacho. • Todos los derechos reservados. •`;
+            mainFooter.classList.add('active-laser');
+            await new Promise(r => setTimeout(r, 1200));
+            mainFooter.classList.remove('active-laser');
+            mainFooter.classList.add('revealed', 'hologram-mode');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -983,7 +958,7 @@
                 document.querySelector('.top-bar'),
                 document.getElementById('sub-text'),
                 document.getElementById('exp-box'),
-                document.querySelector('footer')
+                document.getElementById('main-footer')
             ];
 
             elementsToFade.forEach(el => {
