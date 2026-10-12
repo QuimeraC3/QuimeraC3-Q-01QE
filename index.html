@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO GRAVITATIONAL LENS WARP PARA EL TÍTULO PRINCIPAL */
+        /* EFECTO LIQUID METAL SURFACE PARA EL TÍTULO PRINCIPAL */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -201,25 +201,25 @@
             z-index: 10;
         }
 
-        .page-title.gravitational-warp {
-            animation: gravitationalWarpAnim 1.0s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        .page-title.liquid-surface {
+            animation: liquidSurfaceAnim 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        @keyframes gravitationalWarpAnim {
+        @keyframes liquidSurfaceAnim {
             0% {
                 opacity: 0;
-                transform: translateX(-50%) scale(3.5);
-                filter: blur(20px);
+                transform: translateX(-50%) translateY(40px) scaleY(0.2);
+                filter: blur(15px) saturate(300%);
             }
-            70% {
-                opacity: 1;
-                transform: translateX(-50%) scale(0.92);
-                filter: blur(0px);
+            50% {
+                opacity: 0.7;
+                transform: translateX(-50%) translateY(-10px) scaleY(1.15);
+                filter: blur(6px) saturate(200%);
             }
             100% {
                 opacity: 1;
-                transform: translateX(-50%) scale(1);
-                filter: blur(0px);
+                transform: translateX(-50%) translateY(0) scaleY(1);
+                filter: blur(0px) saturate(100%);
             }
         }
 
@@ -541,7 +541,7 @@
         </div>
     </nav>
 
-    <!-- Título principal con Gravitational Lens Warp -->
+    <!-- Título principal con Liquid Metal Surface -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
@@ -707,7 +707,7 @@
             {
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
-                    { type: 'p', text: "QUIMERA no pretende ser una estructura estática." },
+                    { type: 'p', text: "QUIMERA não pretende ser una estructura estática." },
                     { type: 'p', text: "Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve. Lo que permanece es su orientación:" },
                     { type: 'p', text: "Comprender antes de intervenir." },
                     { type: 'p', text: "Fundamentar antes de afirmar." },
@@ -799,10 +799,10 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo del Gravitational Lens Warp para el título principal
+            // Disparo del Liquid Metal Surface para el título principal
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('gravitational-warp');
-            await new Promise(r => setTimeout(r, 1000));
+            mainTitle.classList.add('liquid-surface');
+            await new Promise(r => setTimeout(r, 1400));
 
             document.getElementById('quimera-word').classList.add('visible');
             await new Promise(r => setTimeout(r, 400));
