@@ -265,22 +265,22 @@
             }
         }
 
-        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER CON LUCES RGB BRILLANTES */
+        /* EFECTO COMBINADO: HOLOGRAM-MODE + HOLOGRAM FLICKER CON LUCES RGB TRASIRAS */
         .hologram-mode {
             animation: hologramGlow 3s ease-in-out infinite alternate, hologramFlicker 4s steps(1) infinite;
         }
 
         @keyframes hologramGlow {
             0% {
-                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 20px rgba(15, 118, 110, 0.6)) drop-shadow(0 0 30px rgba(200, 139, 50, 0.4));
+                filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6)) drop-shadow(0 0 18px rgba(15, 118, 110, 0.5)) drop-shadow(0 0 28px rgba(200, 139, 50, 0.4));
                 opacity: 0.92;
             }
             50% {
-                filter: drop-shadow(0 0 15px rgba(56, 189, 248, 1)) drop-shadow(0 0 30px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 45px rgba(200, 139, 50, 0.7));
+                filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.9)) drop-shadow(0 0 26px rgba(56, 189, 248, 0.7)) drop-shadow(0 0 40px rgba(200, 139, 50, 0.6));
                 opacity: 1;
             }
             100% {
-                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8)) drop-shadow(0 0 20px rgba(15, 118, 110, 0.6)) drop-shadow(0 0 30px rgba(200, 139, 50, 0.4));
+                filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6)) drop-shadow(0 0 18px rgba(15, 118, 110, 0.5)) drop-shadow(0 0 28px rgba(200, 139, 50, 0.4));
                 opacity: 0.92;
             }
         }
@@ -311,8 +311,8 @@
             color: #e2a547;
             display: inline-block;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6), 0 0 30px rgba(200, 139, 50, 0.5);
+            -webkit-text-stroke: 1.5px #ffffff; /* Delineado blanco original */
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); /* Sombra original */
             white-space: nowrap;
             z-index: 10;
         }
@@ -327,8 +327,8 @@
             font-weight: 700;
             letter-spacing: 0.25em;
             line-height: 1.1;
-            -webkit-text-stroke: 1.5px #ffffff;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.7), 0 0 35px rgba(15, 118, 110, 0.6);
+            -webkit-text-stroke: 1.5px #000000; /* Delineado negro original */
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); /* Sombra original */
             cursor: default;
             white-space: nowrap;
             z-index: 10;
@@ -353,8 +353,8 @@
             color: #ffffff;
             text-align: center;
             z-index: 10;
-            -webkit-text-stroke: 0.75px rgba(56, 189, 248, 0.6);
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.8), 0 0 25px rgba(200, 139, 50, 0.4);
+            -webkit-text-stroke: 0.75px #000000; /* Delineado negro original */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Sombra original */
         }
 
         .exploration-box {
@@ -803,7 +803,7 @@
             {
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
-                    { type: 'p', text: "QUIMERA no pretende ser una estructura estática." },
+                    { type: 'p', text: "QUIMERA não pretende ser una estructura estática." },
                     { type: 'p', text: "Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve. Lo que permanece es su orientación:" },
                     { type: 'p', text: "Comprender antes de intervenir." },
                     { type: 'p', text: "Fundamentar antes de afirmar." },
