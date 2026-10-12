@@ -180,7 +180,7 @@
             color: #ffffff;
         }
 
-        /* EFECTO QUANTUM ASSEMBLY PARA EL TÍTULO PRINCIPAL */
+        /* EFECTO HOLOGRAPHIC LASER BURN PARA EL TÍTULO PRINCIPAL */
         .page-title {
             position: absolute;
             top: 07vh;
@@ -201,28 +201,49 @@
             z-index: 10;
         }
 
-        .page-title.quantum-assembling {
-            animation: quantumAssembleAnim 1.2s cubic-bezier(0.15, 0.9, 0.2, 1) forwards;
+        .page-title.laser-burning {
+            opacity: 1;
+            clip-path: inset(0 100% 0 0);
+            animation: laserBurnReveal 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            position: relative;
         }
 
-        @keyframes quantumAssembleAnim {
+        /* Barril de láser brillante recorriendo el texto */
+        .page-title.laser-burning::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            bottom: -10px;
+            left: 0;
+            width: 6px;
+            background: linear-gradient(180deg, transparent, #38bdf8, #fffbeb, #38bdf8, transparent);
+            box-shadow: 0 0 15px #38bdf8, 0 0 30px #0ea5e9;
+            animation: laserBarMove 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 12;
+        }
+
+        @keyframes laserBurnReveal {
             0% {
-                opacity: 0;
-                transform: translateX(-50%) scale(2.5) skewX(-20deg);
-                filter: blur(25px) brightness(3);
-                letter-spacing: 0.5em;
-            }
-            50% {
-                opacity: 0.7;
-                transform: translateX(-50%) scale(0.95) skewX(5deg);
-                filter: blur(8px) brightness(1.8);
-                letter-spacing: 0.15em;
+                clip-path: inset(0 100% 0 0);
+                filter: brightness(2.5) drop-shadow(0 0 12px rgba(56, 189, 248, 0.9));
             }
             100% {
+                clip-path: inset(0 0 0 0);
+                filter: brightness(1) drop-shadow(0 0 0px transparent);
+            }
+        }
+
+        @keyframes laserBarMove {
+            0% {
+                left: 0%;
                 opacity: 1;
-                transform: translateX(-50%) scale(1) skewX(0deg);
-                filter: blur(0px) brightness(1);
-                letter-spacing: 0em;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
             }
         }
 
@@ -544,7 +565,7 @@
         </div>
     </nav>
 
-    <!-- Título principal con Quantum Assembly -->
+    <!-- Título principal con Holographic Laser Burn -->
     <h1 class="page-title" id="main-title">¿QUÉ ES..?</h1>
 
     <div class="quimera-word-container" id="quimera-word">
@@ -646,7 +667,7 @@
             {
                 title: "MÁS QUE INFORMACIÓN: CONOCIMIENTO CON PROPÓSITO.",
                 content: [
-                    { type: 'p', text: "QUIMERA não busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
+                    { type: 'p', text: "QUIMERA no busca simplemente acumular información. Busca transformar la información en conocimiento comprensible, fundamentado y aplicable." },
                     { type: 'p', text: "Para ello, cada proyecto puede recorrer un proceso continuo:" },
                     { type: 'flow', text: "PREGUNTA → INVESTIGACIÓN → ANÁLISIS → CONOCIMIENTO → DESARROLLO → FORMACIÓN → APLICACIÓN → EVALUACIÓN" },
                     { type: 'p', text: "De esta manera, la investigación puede convertirse en formación; la formación, en práctica; y la práctica, nuevamente, en nuevas preguntas que impulsen el conocimiento." }
@@ -802,9 +823,9 @@
             });
             await new Promise(r => setTimeout(r, 400));
 
-            // Disparo instantáneo de Quantum Assembly para el título principal
+            // Disparo del Holographic Laser Burn para el título principal
             const mainTitle = document.getElementById('main-title');
-            mainTitle.classList.add('quantum-assembling');
+            mainTitle.classList.add('laser-burning');
             await new Promise(r => setTimeout(r, 1200));
 
             document.getElementById('quimera-word').classList.add('visible');
