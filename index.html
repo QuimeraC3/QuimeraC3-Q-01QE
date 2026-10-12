@@ -180,10 +180,11 @@
             color: #ffffff;
         }
 
-        /* EFECTO LÁSER COMÚN PARA TÍTULO, QUIMERA, SUBTÍTULO, RECUADRO Y FOOTER */
+        /* EFECTO LÁSER COMÚN */
         .laser-burn-effect {
             opacity: 0;
             clip-path: inset(0 100% 0 0);
+            position: relative;
         }
 
         .laser-burn-effect.active-laser {
@@ -269,7 +270,7 @@
             }
         }
 
-        /* EFECTO HOLOGRAM-MODE SÓLO CON NEÓN ESTABLE (SIN PARPADEO) */
+        /* EFECTO HOLOGRAM-MODE SÓLO CON NEÓN ESTABLE (SIN PARPADEO) PARA ELEMENTOS DE TEXTO EXTERIORES */
         .hologram-mode {
             animation: hologramNeonGlow 3s ease-in-out infinite alternate;
         }
@@ -284,6 +285,23 @@
             100% {
                 text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 20px rgba(15, 118, 110, 0.5), 3px 3px 8px rgba(0, 0, 0, 0.8);
             }
+        }
+
+        /* EFECTO NEÓN HOLOGRÁFICO ESTRICTAMENTE ALREDEDOR DEL RECUADRO DEL MODAL */
+        @keyframes hologramBoxGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(56, 189, 248, 0.4), 0 0 30px rgba(15, 118, 110, 0.3), 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 28px rgba(56, 189, 248, 0.85), 0 0 55px rgba(56, 189, 248, 0.55), 0 0 75px rgba(200, 139, 50, 0.45), 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(56, 189, 248, 0.4), 0 0 30px rgba(15, 118, 110, 0.3), 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .modal-hologram-glow {
+            animation: hologramBoxGlow 3s ease-in-out infinite alternate;
         }
 
         .page-title {
@@ -1023,7 +1041,8 @@
             const modalBody = document.getElementById('modal-body');
 
             modalBox.classList.remove('crt-exit');
-            modalBox.classList.add('crt-entry');
+            // Aplicamos la entrada de TV y el brillo neón holográfico estrictamente alrededor del recuadro
+            modalBox.classList.add('crt-entry', 'modal-hologram-glow');
             
             modalTitle.innerHTML = "";
             modalBody.innerHTML = "";
@@ -1032,30 +1051,40 @@
 
             const data = modalData[index];
             
-            await typeWriterHTML(modalTitle, data.title, 25);
+            // Configurar Título del Modal con efecto láser
+            modalTitle.textContent = data.title;
+            modalTitle.className = 'laser-burn-effect';
+
+            const createdElements = [modalTitle];
 
             for (let item of data.content) {
                 if (item.type === 'p') {
                     let pElem = document.createElement('p');
+                    pElem.className = 'laser-burn-effect';
+                    pElem.textContent = item.text;
                     modalBody.appendChild(pElem);
-                    await typeWriterHTML(pElem, item.text, 12);
+                    createdElements.push(pElem);
                 } else if (item.type === 'flow') {
                     let flowElem = document.createElement('div');
-                    flowElem.className = 'process-flow';
+                    flowElem.className = 'process-flow laser-burn-effect';
+                    flowElem.textContent = item.text;
                     modalBody.appendChild(flowElem);
-                    await typeWriterHTML(flowElem, item.text, 12);
+                    createdElements.push(flowElem);
                 } else if (item.type === 'ul') {
                     let ulElem = document.createElement('ul');
                     modalBody.appendChild(ulElem);
                     for (let liText of item.items) {
                         let liElem = document.createElement('li');
+                        liElem.className = 'laser-burn-effect';
+                        liElem.textContent = liText;
                         ulElem.appendChild(liElem);
-                        await typeWriterHTML(liElem, liText, 12);
+                        createdElements.push(liElem);
                     }
                 }
             }
 
             let closeContainer = document.createElement('div');
+            closeContainer.className = 'laser-burn-effect';
             closeContainer.style.textAlign = 'right';
             closeContainer.style.marginTop = '1.5rem';
 
@@ -1064,24 +1093,30 @@
             closeBtn.id = 'modal-close-btn';
             closeBtn.textContent = 'Cerrar.';
 
-            let cursor = document.createElement('span');
-            cursor.style.display = 'inline-block';
-            cursor.style.width = '8px';
-            cursor.style.height = '1.1em';
-            cursor.style.background = '#c88b32';
-            cursor.style.marginLeft = '4px';
-            cursor.style.verticalAlign = 'middle';
-            cursor.style.animation = 'blinkCursor 0.8s infinite';
-
             closeContainer.appendChild(closeBtn);
-            closeContainer.appendChild(cursor);
             modalBody.appendChild(closeContainer);
+            createdElements.push(closeContainer);
+
+            // Secuencia de despliegue láser escalonada para los elementos del modal
+            await new Promise(r => setTimeout(r, 200));
+
+            for (let el of createdElements) {
+                el.classList.add('active-laser');
+                await new Promise(r => setTimeout(r, 250));
+            }
+
+            await new Promise(r => setTimeout(r, 1200));
+
+            for (let el of createdElements) {
+                el.classList.remove('active-laser');
+                el.classList.add('revealed');
+            }
 
             const triggerClose = () => {
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                modalBox.classList.remove('crt-entry');
+                modalBox.classList.remove('crt-entry', 'modal-hologram-glow');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
 
@@ -1108,39 +1143,6 @@
                     triggerClose();
                 }
             };
-        }
-
-        async function typeWriterHTML(element, htmlString, speed = 20) {
-            return new Promise(resolve => {
-                element.innerHTML = '';
-                const tokens = htmlString.match(/(<\/?[^>]+(>|$)|[^<]+)/g) || [htmlString];
-                let tokenIdx = 0;
-                let charIdx = 0;
-                
-                function type() {
-                    if (tokenIdx < tokens.length) {
-                        let currentToken = tokens[tokenIdx];
-                        if (currentToken.startsWith('<')) {
-                            element.innerHTML += currentToken;
-                            tokenIdx++;
-                            setTimeout(type, speed);
-                        } else {
-                            if (charIdx < currentToken.length) {
-                                element.innerHTML += currentToken.charAt(charIdx);
-                                charIdx++;
-                                setTimeout(type, speed);
-                            } else {
-                                charIdx = 0;
-                                tokenIdx++;
-                                setTimeout(type, speed);
-                            }
-                        }
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
         }
 
         function enableFinalHyperlink() {
