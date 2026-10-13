@@ -1147,6 +1147,11 @@
 
         function enableFinalHyperlink() {
             const wordContainer = document.getElementById('quimera-word');
+            
+            // RESTAURAR VISIBILIDAD DE QUIMERA SOBRE LA LLUVIA MATRIX
+            wordContainer.classList.remove('fade-out-element');
+            wordContainer.style.opacity = '1';
+            wordContainer.style.pointerEvents = 'auto';
             wordContainer.style.cursor = 'pointer';
 
             const stepTime = 120;
