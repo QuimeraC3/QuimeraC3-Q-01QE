@@ -1037,13 +1037,13 @@
             glitchImg.src = glitchImages[index];
             glitchOverlay.style.opacity = '1';
 
-            // El glitch dura 450ms (breve destello tipo falla en pantalla)
+            // El glitch dura 750ms (breve destello tipo falla en pantalla)
             setTimeout(() => {
                 glitchOverlay.style.opacity = '0';
                 setTimeout(() => {
                     if (callback) callback();
                 }, 100); // Pequeño margen para asegurar la transición limpia
-            }, 450);
+            }, 750);
         }
 
         function triggerMatrixAndFadeElements() {
