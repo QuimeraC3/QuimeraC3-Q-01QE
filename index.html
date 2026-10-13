@@ -300,10 +300,6 @@
             }
         }
 
-        .modal-hologram-glow {
-            animation: hologramBoxGlow 3s ease-in-out infinite alternate;
-        }
-
         .page-title {
             position: absolute;
             top: 07vh;
@@ -522,7 +518,7 @@
             100% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
         }
 
-        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO */
+        /* EFECTO DE ENTRADA: APAGADO DE TV ANTIGUA INVERTIDO CON GLOW COMBINADO */
         @keyframes tvTurnOn {
             0% { transform: scale(0, 0); filter: brightness(0); opacity: 0; }
             30% { transform: scale(0.001, 0.005); filter: brightness(5); opacity: 1; }
@@ -531,7 +527,8 @@
         }
 
         .modal-box.crt-entry {
-            animation: tvTurnOn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: tvTurnOn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, hologramBoxGlow 3s ease-in-out infinite alternate;
+            animation-delay: 0s, 0.4s;
         }
 
         .modal-box.crt-exit {
@@ -973,9 +970,9 @@
             const cursorGlow = document.getElementById('cursor-light-glow');
             if (cursorGlow) cursorGlow.classList.remove('visible');
 
+            // Excluimos quimera-word del desvanecimiento para que permanezca visible detrás del último modal
             const elementsToFade = [
                 document.getElementById('main-title'),
-                document.getElementById('quimera-word'),
                 document.querySelector('.top-bar'),
                 document.getElementById('sub-text'),
                 document.getElementById('exp-box'),
@@ -985,6 +982,14 @@
             elementsToFade.forEach(el => {
                 if (el) el.classList.add('fade-out-element');
             });
+
+            // Desactivamos la animación holográfica de la palabra QUIMERA para que quede fija y fusionada con la lluvia Matrix
+            const quimeraWord = document.getElementById('quimera-word');
+            if (quimeraWord) {
+                quimeraWord.classList.remove('hologram-mode');
+                quimeraWord.style.opacity = '1';
+                quimeraWord.style.textShadow = '0 0 12px rgba(56, 189, 248, 0.8), 3px 3px 8px rgba(0, 0, 0, 0.9)';
+            }
 
             startMatrixRain();
             const canvas = document.getElementById('matrix-canvas');
@@ -1044,7 +1049,7 @@
             const modalBody = document.getElementById('modal-body');
 
             modalBox.classList.remove('crt-exit');
-            modalBox.classList.add('crt-entry', 'modal-hologram-glow');
+            modalBox.classList.add('crt-entry');
             
             modalTitle.innerHTML = "";
             modalBody.innerHTML = "";
@@ -1116,7 +1121,7 @@
                 closeBtn.onclick = null;
                 backdrop.onclick = null;
 
-                modalBox.classList.remove('crt-entry', 'modal-hologram-glow');
+                modalBox.classList.remove('crt-entry');
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
 
@@ -1148,7 +1153,6 @@
         function enableFinalHyperlink() {
             const wordContainer = document.getElementById('quimera-word');
             
-            // RESTAURAR VISIBILIDAD DE QUIMERA SOBRE LA LLUVIA MATRIX
             wordContainer.classList.remove('fade-out-element');
             wordContainer.style.opacity = '1';
             wordContainer.style.pointerEvents = 'auto';
