@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿QUÉ ES..? QUIMERA &bull; Ecosistema Científico, Académico y Profesional</title>
+    <title>¿QUE ES..? QUIMERA &bull; Ecosistema Científico, Académico y Profesional</title>
     <style>
         :root {
             --card-bg: rgba(15, 23, 42, 0.90);
@@ -84,6 +84,41 @@
             pointer-events: none;
             opacity: 0;
             transition: opacity 1.5s ease;
+        }
+
+        /* Capa de Glitch Central para las 7 Letras */
+        #glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            pointer-events: none;
+            opacity: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            transition: opacity 0.1s ease;
+        }
+
+        #glitch-img {
+            max-width: 55vw;
+            max-height: 55vh;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.9)) contrast(150%) brightness(1.2);
+            animation: glitchJitter 0.1s infinite steps(2);
+        }
+
+        @keyframes glitchJitter {
+            0% { transform: translate(0, 0) skew(0deg); }
+            20% { transform: translate(-4px, 3px) skew(-2deg); }
+            40% { transform: translate(4px, -2px) skew(2deg); }
+            60% { transform: translate(-2px, -3px) skew(1deg); }
+            80% { transform: translate(3px, 2px) skew(-1deg); }
+            100% { transform: translate(0, 0) skew(0deg); }
         }
 
         /* Clase de desvanecimiento a negro para elementos de la interfaz */
@@ -616,6 +651,11 @@
     <!-- Canvas para la Lluvia Matrix -->
     <canvas id="matrix-canvas"></canvas>
 
+    <!-- Capa de Glitch Central -->
+    <div id="glitch-overlay">
+        <img id="glitch-img" src="" alt="Glitch Visual">
+    </div>
+
     <!-- Capa de desvanecimiento inicial en blanco -->
     <div id="intro-overlay"></div>
 
@@ -720,6 +760,17 @@
             }
         });
 
+        // ARREGLO DE IMÁGENES DE GLITCH PARA CADA LETRA DE QUIMERA (ÍNDICES 0 AL 6)
+        const glitchImages = [
+            'glitch_Q.webp', // Q
+            'glitch_U.webp', // U
+            'glitch_I.webp', // I
+            'glitch_M.webp', // M
+            'glitch_E.webp', // E
+            'glitch_R.webp', // R
+            'glitch_A.webp'  // A
+        ];
+
         const modalData = [
             {
                 title: "FUNDAMENTOS DEL ECOSISTEMA.",
@@ -797,7 +848,7 @@
             {
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
-                    { type: 'p', text: "QUIMERA no pretende ser una estructura estática." },
+                    { type: 'p', text: "QUIMERA não pretende ser una estructura estática." },
                     { type: 'p', text: "Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve. Lo que permanece es su orientación:" },
                     { type: 'p', text: "Comprender antes de intervenir." },
                     { type: 'p', text: "Fundamentar antes de afirmar." },
@@ -820,7 +871,7 @@
             document.querySelector('.top-bar').style.opacity = '1';
             await new Promise(r => setTimeout(r, 400));
 
-            // 1. Entrada Láser para el Brand Logo (QUIMERA - Indice General) + Hologram Mode
+            // 1. Entrada Láser para Brand Logo
             const brandLogo = document.getElementById('brand-logo');
             brandLogo.textContent = brandLogo.dataset.text;
             brandLogo.classList.add('active-laser');
@@ -828,39 +879,38 @@
             brandLogo.classList.remove('active-laser');
             brandLogo.classList.add('revealed', 'hologram-mode');
 
-            // 2. Entrada Láser para el Botón Música + Hologram Mode
+            // 2. Entrada Láser para Música
             const audioToggleBtn = document.getElementById('audio-toggle');
             audioToggleBtn.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
             audioToggleBtn.classList.remove('active-laser');
             audioToggleBtn.classList.add('revealed', 'hologram-mode');
 
-            // 3. Entrada Láser para el Botón Pantalla Completa + Hologram Mode
+            // 3. Entrada Láser para Pantalla Completa
             const fullscreenToggleBtn = document.getElementById('fullscreen-toggle');
             fullscreenToggleBtn.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
             fullscreenToggleBtn.classList.remove('active-laser');
             fullscreenToggleBtn.classList.add('revealed', 'hologram-mode');
 
-            // 4. Entrada Láser para el Título Principal ¿QUÉ ES..? + Hologram Mode al finalizar
+            // 4. Entrada Láser para Título Principal
             const mainTitle = document.getElementById('main-title');
             mainTitle.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
             mainTitle.classList.remove('active-laser');
             mainTitle.classList.add('revealed', 'hologram-mode');
 
-            // 5. Entrada Láser para la palabra QUIMERA + Hologram Mode al finalizar
+            // 5. Entrada Láser para QUIMERA
             const quimeraWord = document.getElementById('quimera-word');
             quimeraWord.classList.add('active-laser');
             await new Promise(r => setTimeout(r, 1200));
             quimeraWord.classList.remove('active-laser');
             quimeraWord.classList.add('revealed', 'hologram-mode');
             
-            // Secuencia interna de colores para las letras de QUIMERA tras su entrada láser
             await playQuimeraAppearanceAsync();
             await new Promise(r => setTimeout(r, 400));
 
-            // 6. Entrada Láser para el Subtítulo + Hologram Mode al finalizar
+            // 6. Entrada Láser para Subtítulo
             const subText = document.getElementById('sub-text');
             subText.textContent = 'Un ecosistema para el conocimiento, la formación y la práctica interdisciplinaria.';
             subText.classList.add('active-laser');
@@ -868,7 +918,7 @@
             subText.classList.remove('active-laser');
             subText.classList.add('revealed', 'hologram-mode');
 
-            // 7. Entrada Láser para el Cuadro de Exploración Interactiva + Hologram Mode al finalizar
+            // 7. Entrada Láser para Cuadro de Exploración
             const expBox = document.getElementById('exp-box');
             expBox.textContent = 'EXPLORACIÓN INTERACTIVA: Una vez que la palabra QUIMERA cambie de color a blanco, seleccione la letra parpadeante para descubrir: ¿Qué es QUIMERA?';
             expBox.classList.add('active-laser');
@@ -877,7 +927,7 @@
             expBox.classList.add('revealed', 'hologram-mode');
             await new Promise(r => setTimeout(r, 400));
 
-            // 8. Entrada Láser para el Footer + Hologram Mode al finalizar
+            // 8. Entrada Láser para Footer
             const mainFooter = document.getElementById('main-footer');
             const footerText = document.getElementById('footer-text');
             footerText.textContent = `• © ${new Date().getFullYear()} Instituto Quimera. • Centro de Investigación, Docencia, Servicio y Difusión. • Dr.C. Cesar Cerezo Camacho. • Todos los derechos reservados. •`;
@@ -971,9 +1021,29 @@
                         triggerMatrixAndFadeElements();
                     }
 
-                    showModalTyped(index);
+                    // DISPARAR EL EFECTO GLITCH DE LA LETRA SELECCIONADA Y LUEGO EL MODAL
+                    triggerLetterGlitch(index, () => {
+                        showModalTyped(index);
+                    });
                 }
             }, 100);
+        }
+
+        // FUNCIÓN PARA MOSTRAR EL GLITCH BREVE (MENOS DE 1 SEGUNDO) ANTES DEL MODAL
+        function triggerLetterGlitch(index, callback) {
+            const glitchOverlay = document.getElementById('glitch-overlay');
+            const glitchImg = document.getElementById('glitch-img');
+
+            glitchImg.src = glitchImages[index];
+            glitchOverlay.style.opacity = '1';
+
+            // El glitch dura 450ms (breve destello tipo falla en pantalla)
+            setTimeout(() => {
+                glitchOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    if (callback) callback();
+                }, 100); // Pequeño margen para asegurar la transición limpia
+            }, 450);
         }
 
         function triggerMatrixAndFadeElements() {
