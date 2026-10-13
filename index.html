@@ -760,16 +760,24 @@
             }
         });
 
-        // ARREGLO DE IMÁGENES DE GLITCH PARA CADA LETRA DE QUIMERA (ÍNDICES 0 AL 6)
+        // ARREGLO DE IMÁGENES DE GLITCH PARA CADA LETRA DE QUIMERA (ÍNDICES 0 AL 6)[cite: 6]
         const glitchImages = [
-            'glitch_Q.webp', // Q
-            'glitch_U.webp', // U
-            'glitch_I.webp', // I
-            'glitch_M.webp', // M
-            'glitch_E.webp', // E
-            'glitch_R.webp', // R
-            'glitch_A.webp'  // A
+            'glitch_Q.webp', // Q[cite: 6]
+            'glitch_U.webp', // U[cite: 6]
+            'glitch_I.webp', // I[cite: 6]
+            'glitch_M.webp', // M[cite: 6]
+            'glitch_E.webp', // E[cite: 6]
+            'glitch_R.webp', // R[cite: 6]
+            'glitch_A.webp'  // A[cite: 6]
         ];
+
+        // PRECARGA INVISIBLE DE TODAS LAS IMÁGENES DE GLITCH EN CACHÉ PARA EVITAR RETRASOS O TRASLAPES
+        const preloadedGlitchImages = [];
+        glitchImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+            preloadedGlitchImages.push(img);
+        });
 
         const modalData = [
             {
@@ -848,7 +856,7 @@
             {
                 title: "UNA ESTRUCTURA EN EVOLUCIÓN.",
                 content: [
-                    { type: 'p', text: "QUIMERA não pretende ser una estructura estática." },
+                    { type: 'p', text: "QUIMERA no pretende ser una estructura estática." },
                     { type: 'p', text: "Sus áreas, proyectos, metodologías y recursos podrán evolucionar conforme evolucionen la ciencia, la tecnología y las necesidades de los profesionales y las comunidades a las que sirve. Lo que permanece es su orientación:" },
                     { type: 'p', text: "Comprender antes de intervenir." },
                     { type: 'p', text: "Fundamentar antes de afirmar." },
@@ -1018,7 +1026,10 @@
                     targetLetter.style.color = '#ffffff';
 
                     if (index === 6) {
-                        triggerMatrixAndFadeElements();
+                        // RETRASAMOS LA LLUVIA DE MATRIX 1.4 SEGUNDOS PARA QUE OCURRA FLUIDA TRAS EL GLITCH Y LA APERTURA DEL MODAL
+                        setTimeout(() => {
+                            triggerMatrixAndFadeElements();
+                        }, 1400);
                     }
 
                     // DISPARAR EL EFECTO GLITCH DE LA LETRA SELECCIONADA Y LUEGO EL MODAL
@@ -1029,7 +1040,7 @@
             }, 100);
         }
 
-        // FUNCIÓN PARA MOSTRAR EL GLITCH BREVE (MENOS DE 1 SEGUNDO) ANTES DEL MODAL
+        // FUNCIÓN PARA MOSTRAR EL GLITCH BREVE ANTES DEL MODAL
         function triggerLetterGlitch(index, callback) {
             const glitchOverlay = document.getElementById('glitch-overlay');
             const glitchImg = document.getElementById('glitch-img');
@@ -1037,12 +1048,12 @@
             glitchImg.src = glitchImages[index];
             glitchOverlay.style.opacity = '1';
 
-            // El glitch dura 750ms (breve destello tipo falla en pantalla)
+            // El glitch dura 750ms
             setTimeout(() => {
                 glitchOverlay.style.opacity = '0';
                 setTimeout(() => {
                     if (callback) callback();
-                }, 100); // Pequeño margen para asegurar la transición limpia
+                }, 100); 
             }, 750);
         }
 
