@@ -166,17 +166,23 @@
             color: #38bdf8;
         }
 
+        /* Botones de Música y Pantalla Completa en Azul Tecnológico */
         #audio-toggle, #fullscreen-toggle {
-            background: rgba(15, 118, 110, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.3rem 0.8rem;
+            background: rgba(56, 189, 248, 0.22);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            color: #ffffff;
+            padding: 0.35rem 0.9rem;
             border-radius: 20px;
             cursor: pointer;
-            transition: opacity 500ms ease, background-color 0.3s ease;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+            transition: opacity 500ms ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         #audio-toggle:hover, #fullscreen-toggle:hover {
-            background: var(--primary);
+            background: rgba(56, 189, 248, 0.5);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
             color: #ffffff;
         }
 
@@ -982,12 +988,11 @@
                 if (el) el.classList.add('fade-out-element');
             });
 
-            // Desactivar completamente el halo holográfico y sombras en la palabra QUIMERA para fusionarla de forma limpia con Matrix
             const quimeraWord = document.getElementById('quimera-word');
             if (quimeraWord) {
                 quimeraWord.classList.remove('hologram-mode');
                 quimeraWord.style.opacity = '1';
-                quimeraWord.style.textShadow = '3px 3px 8px rgba(0, 0, 0, 0.9)'; // Sombra base limpia sin halo de neón
+                quimeraWord.style.textShadow = '3px 3px 8px rgba(0, 0, 0, 0.9)';
             }
 
             startMatrixRain();
