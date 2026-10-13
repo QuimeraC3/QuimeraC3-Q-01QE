@@ -1026,10 +1026,10 @@
                     targetLetter.style.color = '#ffffff';
 
                     if (index === 6) {
-                        // RETRASAMOS LA LLUVIA DE MATRIX 1.4 SEGUNDOS PARA QUE OCURRA FLUIDA TRAS EL GLITCH Y LA APERTURA DEL MODAL
+                        // RETRASAMOS LA LLUVIA DE MATRIX A 2.8 SEGUNDOS PARA UNA TRANSICIÓN SUAVE Y PAUSADA
                         setTimeout(() => {
                             triggerMatrixAndFadeElements();
-                        }, 1400);
+                        }, 2800);
                     }
 
                     // DISPARAR EL EFECTO GLITCH DE LA LETRA SELECCIONADA Y LUEGO EL MODAL
@@ -1040,13 +1040,18 @@
             }, 100);
         }
 
-        // FUNCIÓN PARA MOSTRAR EL GLITCH BREVE ANTES DEL MODAL
+        // FUNCIÓN PARA MOSTRAR EL GLITCH LIMPIO Y SIN TRASLAPE ANTES DEL MODAL
         function triggerLetterGlitch(index, callback) {
             const glitchOverlay = document.getElementById('glitch-overlay');
             const glitchImg = document.getElementById('glitch-img');
 
-            glitchImg.src = glitchImages[index];
+            // Limpiamos la fuente al instante para evitar cualquier marco fantasma o traslape previo
+            glitchImg.src = ''; 
             glitchOverlay.style.opacity = '1';
+
+            setTimeout(() => {
+                glitchImg.src = glitchImages[index];
+            }, 30);
 
             // El glitch dura 750ms
             setTimeout(() => {
