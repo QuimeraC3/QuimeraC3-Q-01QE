@@ -970,7 +970,6 @@
             const cursorGlow = document.getElementById('cursor-light-glow');
             if (cursorGlow) cursorGlow.classList.remove('visible');
 
-            // Excluimos quimera-word del desvanecimiento para que permanezca visible detrás del último modal
             const elementsToFade = [
                 document.getElementById('main-title'),
                 document.querySelector('.top-bar'),
@@ -983,12 +982,12 @@
                 if (el) el.classList.add('fade-out-element');
             });
 
-            // Desactivamos la animación holográfica de la palabra QUIMERA para que quede fija y fusionada con la lluvia Matrix
+            // Desactivar completamente el halo holográfico y sombras en la palabra QUIMERA para fusionarla de forma limpia con Matrix
             const quimeraWord = document.getElementById('quimera-word');
             if (quimeraWord) {
                 quimeraWord.classList.remove('hologram-mode');
                 quimeraWord.style.opacity = '1';
-                quimeraWord.style.textShadow = '0 0 12px rgba(56, 189, 248, 0.8), 3px 3px 8px rgba(0, 0, 0, 0.9)';
+                quimeraWord.style.textShadow = '3px 3px 8px rgba(0, 0, 0, 0.9)'; // Sombra base limpia sin halo de neón
             }
 
             startMatrixRain();
