@@ -87,7 +87,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix limpia */
+        /* Canvas para Lluvia de Código Matrix limpia y fluida */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -622,35 +622,12 @@
             document.documentElement.style.setProperty('--mouse-y', `${mouseY}px`);
         });
 
-        // WEB AUDIO API Y REACTIVIDAD MUSICAL EN TIEMPO REAL REALMENTE VISIBLE
-        let audioCtx, analyser, dataArray, isAudioInitialized = false;
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
         let isMusicPlaying = false;
 
-        function initAudioAnalyzer() {
-            if (isAudioInitialized) return;
-            try {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioCtx.createAnalyser();
-                const source = audioCtx.createMediaElementSource(music);
-                source.connect(analyser);
-                analyser.connect(audioCtx.destination);
-                analyser.fftSize = 64;
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                isAudioInitialized = true;
-            } catch (e) {
-                console.log("Web Audio API no soportada o bloqueada:", e);
-            }
-        }
-
         audioToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            initAudioAnalyzer();
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
             if (isMusicPlaying) {
                 music.pause();
                 audioToggle.innerHTML = '<span style="color: #ffffff;">🎵</span> Música: OFF';
@@ -696,7 +673,7 @@
             img.src = src;
         });
 
-        // TEXTO ORIGINAL 100% ÍNTEGRO Y RESPETADO
+        // TEXTO ORIGINAL 100% ÍNTEGRO Y RESPETADO[cite: 2]
         const modalData = [
             {
                 title: "FUNDAMENTOS DEL ECOSISTEMA.",
@@ -1019,14 +996,7 @@
             let drops = Array(columns).fill(1);
 
             function draw() {
-                let bassMultiplier = 1;
-                if (analyser && isMusicPlaying) {
-                    analyser.getByteFrequencyData(dataArray);
-                    let bassVal = dataArray[2] || 0;
-                    // Aceleramos y aumentamos el brillo de la lluvia según la música de fondo
-                    bassMultiplier = 1 + (bassVal / 60); 
-                }
-
+                // Lluvia de Matrix con velocidad fluida, suave y constante (sin alteraciones por la música)
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -1039,7 +1009,7 @@
                     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                         drops[i] = 0;
                     }
-                    drops[i] += bassMultiplier; // La velocidad responde dinámicamente al audio
+                    drops[i]++;
                 }
             }
 
