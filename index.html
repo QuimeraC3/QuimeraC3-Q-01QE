@@ -69,7 +69,7 @@
             opacity: 1;
         }
 
-        /* Capa de luz reactiva exclusiva del puntero con audio-pulsación */
+        /* Capa de luz reactiva exclusiva del puntero */
         .cursor-light-glow {
             position: fixed;
             top: 0;
@@ -78,7 +78,7 @@
             height: 100vh;
             pointer-events: none;
             z-index: 0;
-            background: radial-gradient(circle calc(400px + var(--audio-pulse, 0px)) at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.22), rgba(200, 139, 50, 0.12) 45%, transparent 80%);
+            background: radial-gradient(circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.22), rgba(200, 139, 50, 0.12) 45%, transparent 80%);
             opacity: 0;
             transition: opacity 1.5s ease;
         }
@@ -87,7 +87,7 @@
             opacity: 1;
         }
 
-        /* Canvas para Lluvia de Código Matrix y Partículas 3D */
+        /* Canvas para Lluvia de Código Matrix limpia */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -312,7 +312,7 @@
 
         @keyframes hologramNeonGlow {
             0% { text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 20px rgba(15, 118, 110, 0.5), 3px 3px 8px rgba(0, 0, 0, 0.8); }
-            50% { text-shadow: 0 0 calc(18px + var(--audio-bass, 0px)) rgba(56, 189, 248, 1), 0 0 35px rgba(56, 189, 248, 0.8), 0 0 50px rgba(200, 139, 50, 0.6), 3px 3px 8px rgba(0, 0, 0, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(56, 189, 248, 1), 0 0 35px rgba(56, 189, 248, 0.8), 0 0 50px rgba(200, 139, 50, 0.6), 3px 3px 8px rgba(0, 0, 0, 0.8); }
             100% { text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 0 0 20px rgba(15, 118, 110, 0.5), 3px 3px 8px rgba(0, 0, 0, 0.8); }
         }
 
@@ -555,7 +555,7 @@
     <!-- Capa de luz reactiva exclusiva del puntero -->
     <div class="cursor-light-glow" id="cursor-light-glow"></div>
 
-    <!-- Canvas para la Lluvia Matrix y Partículas 3D con Físicas -->
+    <!-- Canvas para la Lluvia Matrix -->
     <canvas id="matrix-canvas"></canvas>
 
     <!-- Capa de Glitch Central -->
@@ -611,7 +611,7 @@
             }
         });
 
-        // CONTROL DE MOVIMIENTO DEL CURSOR Y FÍSICAS DE RATÓN
+        // CONTROL DE MOVIMIENTO DEL CURSOR
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
 
@@ -622,7 +622,7 @@
             document.documentElement.style.setProperty('--mouse-y', `${mouseY}px`);
         });
 
-        // WEB AUDIO API Y REACTIVIDAD MUSICAL EN TIEMPO REAL
+        // WEB AUDIO API Y REACTIVIDAD MUSICAL EN TIEMPO REAL REALMENTE VISIBLE
         let audioCtx, analyser, dataArray, isAudioInitialized = false;
         const music = document.getElementById('bg-music');
         const audioToggle = document.getElementById('audio-toggle');
@@ -696,7 +696,7 @@
             img.src = src;
         });
 
-        // TEXTO ORIGINAL 100% ÍNTEGRO, SIN RECORTES NI MODIFICACIONES
+        // TEXTO ORIGINAL 100% ÍNTEGRO Y RESPETADO
         const modalData = [
             {
                 title: "FUNDAMENTOS DEL ECOSISTEMA.",
@@ -995,13 +995,13 @@
                 quimeraWord.style.textShadow = '3px 3px 8px rgba(0, 0, 0, 0.9)';
             }
 
-            startMatrixRainAndParticles();
+            startMatrixRainClean();
             const canvas = document.getElementById('matrix-canvas');
             if (canvas) canvas.style.opacity = '1';
         }
 
         let matrixInterval = null;
-        function startMatrixRainAndParticles() {
+        function startMatrixRainClean() {
             const canvas = document.getElementById('matrix-canvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
@@ -1018,24 +1018,13 @@
             let columns = Math.floor(canvas.width / fontSize);
             let drops = Array(columns).fill(1);
 
-            let particles = [];
-            for (let p = 0; p < 75; p++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 1.5,
-                    vy: (Math.random() - 0.5) * 1.5,
-                    size: Math.random() * 2.5 + 1
-                });
-            }
-
             function draw() {
-                let bassVal = 0;
+                let bassMultiplier = 1;
                 if (analyser && isMusicPlaying) {
                     analyser.getByteFrequencyData(dataArray);
-                    bassVal = dataArray[2] / 5;
-                    document.documentElement.style.setProperty('--audio-bass', `${bassVal * 2}px`);
-                    document.documentElement.style.setProperty('--audio-pulse', `${bassVal * 4}px`);
+                    let bassVal = dataArray[2] || 0;
+                    // Aceleramos y aumentamos el brillo de la lluvia según la música de fondo
+                    bassMultiplier = 1 + (bassVal / 60); 
                 }
 
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
@@ -1050,29 +1039,8 @@
                     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                         drops[i] = 0;
                     }
-                    drops[i]++;
+                    drops[i] += bassMultiplier; // La velocidad responde dinámicamente al audio
                 }
-
-                ctx.fillStyle = '#38bdf8';
-                particles.forEach(pt => {
-                    pt.x += pt.vx;
-                    pt.y += pt.vy;
-
-                    if (pt.x < 0 || pt.x > canvas.width) pt.vx *= -1;
-                    if (pt.y < 0 || pt.y > canvas.height) pt.vy *= -1;
-
-                    let dx = mouseX - pt.x;
-                    let dy = mouseY - pt.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
-                        pt.x -= (dx / dist) * 0.8;
-                        pt.y -= (dy / dist) * 0.8;
-                    }
-
-                    ctx.beginPath();
-                    ctx.arc(pt.x, pt.y, pt.size + (bassVal * 0.05), 0, Math.PI * 2);
-                    ctx.fill();
-                });
             }
 
             if (matrixInterval) clearInterval(matrixInterval);
