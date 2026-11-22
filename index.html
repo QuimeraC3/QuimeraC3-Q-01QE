@@ -562,9 +562,10 @@
             opacity: 0;
         }
 
+        /* CORRECCIÓN: mensaje ARRIBA de QUIMERA (antes estaba debajo con calc(65vh + 8rem)) */
         #final-message {
             position: fixed;
-            top: calc(65vh + 8rem);
+            top: 18vh;
             left: 50%;
             transform: translateX(-50%);
             width: min(780px, 90vw);
@@ -578,14 +579,14 @@
             white-space: pre-line;
             text-shadow: 0 0 12px rgba(56, 189, 248, 0.7), 0 0 24px rgba(56, 189, 248, 0.4);
             -webkit-text-stroke: 0.25px rgba(0, 0, 0, 0.6);
-            z-index: 3;
+            z-index: 5;
             pointer-events: none;
         }
 
+        /* Móvil: mensaje arriba consistente con desktop */
         @media (max-width: 900px) {
             #final-message {
-                top: auto;
-                bottom: 12vh;
+                top: 10vh;
                 font-size: clamp(0.8rem, 3vw, 1rem);
                 padding: 0 1rem;
             }
@@ -1225,9 +1226,7 @@
 
             runSequence();
 
-            // ═══════════════════════════════════════════════════════
             // 1s después de iniciar los colores: mostrar mensaje láser
-            // ═══════════════════════════════════════════════════════
             setTimeout(() => {
                 showFinalMessage();
             }, 1000);
@@ -1284,6 +1283,7 @@
 
             const quimeraElem = document.getElementById('quimera-word');
             const quimeraRect = quimeraElem ? quimeraElem.getBoundingClientRect() : { top: window.innerHeight * 0.4 };
+            // phraseY = mitad del espacio entre el top del viewport y el top de QUIMERA
             const phraseY = quimeraRect.top / 2;
             const phrase = "SEGUNDO CÓDIGO: 18-22-09-05-14.";
 
