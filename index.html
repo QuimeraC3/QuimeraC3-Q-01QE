@@ -360,6 +360,7 @@
             cursor: default;
             white-space: nowrap;
             z-index: 10;
+            transition: opacity 750ms ease;
         }
 
         .quimera-word-container.final-portal-active {
@@ -1076,12 +1077,13 @@ GUÁRDALO, TE SERÁ ÚTIL EN UN FUTURO CERCANO.</p>
                 if (el) el.classList.add('fade-out-element');
             });
 
+            // QUIMERA permanece oculta esperando detrás del modal hasta que este desaparezca
             const quimeraWord = document.getElementById('quimera-word');
             if (quimeraWord) {
                 quimeraWord.classList.remove('hologram-mode');
-                quimeraWord.classList.add('final-portal-active');
-                quimeraWord.style.opacity = '1';
-                quimeraWord.style.textShadow = '0 0 18px rgba(56, 189, 248, 0.55), 0 5px 24px rgba(0, 0, 0, 0.9)';
+                quimeraWord.style.transition = 'none';
+                quimeraWord.style.opacity = '0';
+                quimeraWord.style.pointerEvents = 'none';
             }
 
             startMatrixRainClean();
@@ -1210,6 +1212,7 @@ GUÁRDALO, TE SERÁ ÚTIL EN UN FUTURO CERCANO.</p>
                 modalBox.classList.add('crt-exit');
                 backdrop.classList.remove('active');
 
+                // Esperar a que termine tvShutdown (400ms) para que el modal haya desaparecido antes de revelar QUIMERA
                 setTimeout(() => {
                     letters[index].style.color = '#c88b32';
                     currentLetterIndex++;
@@ -1271,10 +1274,17 @@ GUÁRDALO, TE SERÁ ÚTIL EN UN FUTURO CERCANO.</p>
 
             wordContainer.classList.remove('fade-out-element');
             wordContainer.classList.add('final-portal-active');
-            wordContainer.style.opacity = '1';
+            wordContainer.style.opacity = '0';
             wordContainer.style.pointerEvents = 'auto';
             wordContainer.style.cursor = 'pointer';
+            wordContainer.style.textShadow = '0 0 18px rgba(56, 189, 248, 0.55), 0 5px 24px rgba(0, 0, 0, 0.9)';
             wordContainer.setAttribute('tabindex', '0');
+
+            // Aparición natural de QUIMERA una vez que el modal ha desaparecido
+            requestAnimationFrame(() => {
+                wordContainer.style.transition = 'opacity 750ms ease';
+                wordContainer.style.opacity = '1';
+            });
 
             const stepTime = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 400 : 120;
 
